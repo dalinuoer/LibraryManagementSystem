@@ -4,9 +4,10 @@ class book
 {
 private:
 	int id;
-	std::string name;
-	std::string author;
-	std::string publisher;
+	char name[40];
+	char author[40];
+	char publisher[40];
+	char ISBN[13];
 	double price;
 public:
 	book()
@@ -27,34 +28,44 @@ public:
 		id = newId;
 	}
 
-	std::string getName()
+	char* getName()
 	{
 		return name;
 	}
 
-	void setName(std::string newName)
+	void setName(char* newName)
 	{
-		name = newName;
+		strcpy(name, newName);
 	}
 
-	std::string getAuthor()
+	char* getAuthor()
 	{
 		return author;
 	}
 
-	void setAuthor(std::string newAuthor)
+	void setAuthor(char* newAuthor)
 	{
-		author = newAuthor;
+		strcpy(author, newAuthor);
 	}
 
-	std::string getPublisher()
+	char* getPublisher()
 	{
 		return publisher;
 	}
 
-	void setPublisher(std::string newPublisher)
+	void setPublisher(char* newPublisher)
 	{
-		publisher = newPublisher;
+		 strcpy(publisher, newPublisher);
+	}
+
+	char* getISBN()
+	{
+		return ISBN;
+	}
+
+	void setISBN(char* newISBN)
+	{
+		strcpy(ISBN, newISBN);
 	}
 
 	double getPrice()

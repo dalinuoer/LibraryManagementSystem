@@ -4,7 +4,7 @@ class user
 {
 private:
 	int id;
-	std::string name;
+	char name[40];
 	enum userType
 	{
 		STUDENT, 
@@ -30,14 +30,14 @@ public:
 		id = newId;
 	}
 
-	std::string getName()
+	char* getName()
 	{
 		return name;
 	}
 
-	void setName(std::string newName)
+	void setName(char* newName)
 	{
-		name = newName;
+		strcpy(name, newName);
 	}
 	
 	userType getType()

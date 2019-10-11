@@ -6,9 +6,9 @@ private:
 	int id;
 	int userId;
 	int bookId;
-	std::string date;
+	char date[40];
 	int duration;
-	std::string returnDate;
+	char returnDate[40];
 public:
 	record()
 	{
@@ -48,14 +48,14 @@ public:
 		bookId = newBookId;
 	}
 
-	std::string getDate()
+	char* getDate()
 	{
 		return date;
 	}
 
-	void setDate(std::string newDate)
+	void setDate(char* newDate)
 	{
-		date = newDate;
+		strcpy(date, newDate);
 	}
 
 	int getDuration()
@@ -68,14 +68,14 @@ public:
 		duration = newDuration;
 	}
 
-	std::string getReturnDate()
+	char* getReturnDate()
 	{
 		return returnDate;
 	}
 
-	void setReturnDate(std::string newReturnDate)
+	void setReturnDate(char* newReturnDate)
 	{
-		returnDate = newReturnDate;
+		strcpy(returnDate, newReturnDate);
 	}
 };
 
