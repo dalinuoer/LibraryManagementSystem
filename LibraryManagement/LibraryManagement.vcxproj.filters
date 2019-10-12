@@ -16,6 +16,12 @@
     <Filter Include="头文件\po">
       <UniqueIdentifier>{1b0bc30f-5514-4fc6-94a6-0712fdf55e4e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\po">
+      <UniqueIdentifier>{3e9162ac-a517-462e-90b2-fa81fff0c3fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\dao">
+      <UniqueIdentifier>{31e4f877-c7cb-44dc-b9ec-2761a53ca347}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ABook.h">
@@ -35,23 +41,28 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Book.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="User.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Record.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="ABook.cpp">
-      <Filter>源文件</Filter>
+      <Filter>源文件\po</Filter>
+    </ClCompile>
+    <ClCompile Include="Book.cpp">
+      <Filter>源文件\po</Filter>
     </ClCompile>
     <ClCompile Include="BookType.cpp">
-      <Filter>源文件</Filter>
+      <Filter>源文件\po</Filter>
     </ClCompile>
+    <ClCompile Include="Record.cpp">
+      <Filter>源文件\po</Filter>
+    </ClCompile>
+    <ClCompile Include="User.cpp">
+      <Filter>源文件\po</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Dao.hpp">
+      <Filter>头文件\dao</Filter>
+    </None>
   </ItemGroup>
 </Project>
