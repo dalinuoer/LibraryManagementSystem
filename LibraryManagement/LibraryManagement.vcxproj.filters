@@ -13,22 +13,25 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="头文件\po">
+      <UniqueIdentifier>{1b0bc30f-5514-4fc6-94a6-0712fdf55e4e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Book.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="User.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Record.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="ABook.h">
-      <Filter>头文件</Filter>
+      <Filter>头文件\po</Filter>
+    </ClInclude>
+    <ClInclude Include="Book.h">
+      <Filter>头文件\po</Filter>
     </ClInclude>
     <ClInclude Include="BookType.h">
-      <Filter>头文件</Filter>
+      <Filter>头文件\po</Filter>
+    </ClInclude>
+    <ClInclude Include="Record.h">
+      <Filter>头文件\po</Filter>
+    </ClInclude>
+    <ClInclude Include="User.h">
+      <Filter>头文件\po</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
