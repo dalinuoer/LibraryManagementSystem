@@ -1,0 +1,10 @@
+public/
+static/upload/
+.vs/
+.sln/
+.db/
+.user/
+.filters/
+.vcxproj/
+.dat/
+.tlog/
