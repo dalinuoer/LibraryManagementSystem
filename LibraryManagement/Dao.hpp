@@ -27,10 +27,32 @@ public:
 
 	bool insert(T data)
 	{
-		file.seek
+		file.seekp(ios::end);
 		file.write((char*)&data, sizeof(data));
+		return true;
 	}
 
+	int findById(int id)
+	{
+		T data;
+		file.seekg(ios::beg);
+		while (!file.eof())
+		{
+			file.read((char*)&data, sizeof(T));
+			if (data.getId() == id)
+			{
+				break;
+			}
+		}
+		return file.tellg() - sizeof(T);
+	}
+
+	bool update(int id, T data)
+	{
+		int pos = findById(id);
+		file.write((char*)&data, sizeof(T));
+		return true;
+	}
 
 private:
 	fstream file;
