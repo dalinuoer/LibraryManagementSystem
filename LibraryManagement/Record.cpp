@@ -15,3 +15,8 @@ int Record::getId()
 {
 	return this->id;
 }
+
+void Record::setId(const int id)
+{
+	this->id = id;
+}
