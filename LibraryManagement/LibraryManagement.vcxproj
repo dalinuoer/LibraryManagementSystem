@@ -150,6 +150,7 @@
     <ClInclude Include="ABook.h" />
     <ClInclude Include="Book.h" />
     <ClInclude Include="BookType.h" />
+    <ClInclude Include="consoleCommand.h" />
     <ClInclude Include="Record.h" />
     <ClInclude Include="User.h" />
   </ItemGroup>
@@ -157,6 +158,7 @@
     <ClCompile Include="ABook.cpp" />
     <ClCompile Include="Book.cpp" />
     <ClCompile Include="BookType.cpp" />
+    <ClCompile Include="consoleCommand.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Record.cpp" />
     <ClCompile Include="User.cpp" />
