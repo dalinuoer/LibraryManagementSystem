@@ -1,18 +1,9 @@
-#include "consoleCommand.h"
+#include "ConsoleCommand.h"
 #include <iostream>
 
 using namespace std;
 
-consoleCommand::consoleCommand()
-{
-}
-
-
-consoleCommand::~consoleCommand()
-{
-}
-
-void consoleCommand::printMenu()
+void printMenu()
 {
 	cout << "*****欢迎使用图书馆管理系统!*****" << endl;
 	cout << "**********系统功能如下**********" << endl;
@@ -21,7 +12,7 @@ void consoleCommand::printMenu()
 	cout << "**********3-借还书操作**********" << endl;
 }
 
-void consoleCommand::printFunction(int num)
+void printFunction(int num)
 {
 	if (num == 1)	// user
 	{
@@ -44,9 +35,9 @@ void consoleCommand::printFunction(int num)
 	}
 }
 
-void consoleCommand::console()
+void console()
 {
-	consoleCommand::printMenu();
+	printMenu();
 	int choice1;
 	int choice2;
 	while (true)
