@@ -9,7 +9,7 @@ using namespace std;
 
 int main()
 {
-	/*User user;
+	User user;
 
 	cout << sizeof(User) << endl;
 	cout << sizeof(user) << endl;
@@ -22,6 +22,6 @@ int main()
 	out.open("test.dat");
 	out.write((char*)&user, sizeof(user));
 	out.flush();
-	out.close();*/
+	out.close();
 	return 0;
 }

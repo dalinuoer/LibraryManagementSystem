@@ -35,7 +35,7 @@ ABook::ABookStatus ABook::getStatus()
 	return this->status;
 }
 
-void ABook::setStatus(const ABookStatus status)
+void ABook::setStatus(const ABook::ABookStatus status)
 {
 	this->status = status;
 }

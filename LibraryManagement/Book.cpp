@@ -77,7 +77,7 @@ Book::BookStatus Book::getStatus()
 	return this->status;
 }
 
-void Book::setStatus(const BookStatus status)
+void Book::setStatus(const Book::BookStatus status)
 {
 	this->status = status;
 }

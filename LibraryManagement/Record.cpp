@@ -76,7 +76,7 @@ Record::RecordStatus Record::getStatus()
 	return this->status;
 }
 
-void Record::setStatus(const RecordStatus status)
+void Record::setStatus(const Record::RecordStatus status)
 {
 	this->status = status;
 }
