@@ -1,4 +1,4 @@
-#include "ConsoleCommand.h"
+#include "consoleCommand.h"
 #include <iostream>
 
 using namespace std;
@@ -32,6 +32,7 @@ void printFunction(int num)
 	{
 		cout << "1-借阅图书" << endl;
 		cout << "2-归还图书" << endl;
+		cout << "3-续借图书" << endl;
 	}
 }
 
@@ -106,6 +107,9 @@ void console()
 				break;
 			case 2:
 				cout << "还书成功！" << endl;
+				break;
+			case 3:
+				cout << "续借成功！" << endl;
 				break;
 			default:
 				cout << "您输入的数字有误，请检查后重新输入！" << endl;
