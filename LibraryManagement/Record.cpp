@@ -23,60 +23,60 @@ void Record::setId(const int id)
 
 int Record::getUserId()
 {
-
+	return this->userId;
 }
 
 void Record::setUserId(const int userId)
 {
-
+	this->userId = userId;
 }
 
 int Record::getBookId()
 {
-
+	return this->bookId;
 }
 
 void Record::setBookId(const int bookId)
 {
-
+	this->bookId = bookId;
 }
 
 string Record::getDate()
 {
-
+	return string(this->date);
 }
 
 void Record::setDate(const string &date)
 {
-
+	strcpy(this->date, date.c_str());
 }
 
 int Record::getDuration()
 {
-
+	return this->duration;
 }
 
 void Record::setDuration(const int duration)
 {
-
+	this->duration = duration;
 }
 
 string Record::getReturnDate()
 {
-
+	return string(this->returnDate);
 }
 
 void Record::setReturnDate(const string &returnDate)
 {
-
+	strcpy(this->returnDate,returnDate.c_str());
 }
 
 Record::RecordStatus Record::getStatus()
 {
-
+	return this->status;
 }
 
 void Record::setStatus(const RecordStatus status)
 {
-
+	this->status = status;
 }
