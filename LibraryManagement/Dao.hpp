@@ -35,7 +35,6 @@ public:
 	bool update(int id, T data)
 	{
 		int pos = findPosition(id);
-		cout << pos << endl;
 		if (pos != -1)
 		{
 			file.open(filename, ios::binary | ios::out | ios::in);
@@ -116,7 +115,7 @@ public:
 			}
 		}
 		file.close();
-		return dataList();
+		return dataList;
 	}
 
 private:
