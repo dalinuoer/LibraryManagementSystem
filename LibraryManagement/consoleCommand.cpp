@@ -75,6 +75,7 @@ void console()
 			default:
 				cout << "您输入的数字有误，请检查后重新输入！" << endl;
 			}
+
 			break;
 		case 2:
 			printFunction(2);
@@ -98,8 +99,8 @@ void console()
 				break;
 			default:
 				cout << "您输入的数字有误，请检查后重新输入！" << endl;
-				break;
 			}
+
 			break;
 		case 3:
 			printFunction(3);
@@ -120,9 +121,11 @@ void console()
 				break;
 			default:
 				cout << "您输入的数字有误，请检查后重新输入！" << endl;
-				break;
 			}
+
 			break;
+		default:
+			cout << "您输入的数字有误，请检查后重新输入！" << endl;
 		}
 	}
 }
