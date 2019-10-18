@@ -151,6 +151,7 @@
     <ClInclude Include="Book.h" />
     <ClInclude Include="BookDao.h" />
     <ClInclude Include="BookType.h" />
+    <ClInclude Include="consoleCommand.h" />
     <ClInclude Include="Record.h" />
     <ClInclude Include="RecordDao.h" />
     <ClInclude Include="TypeDao.h" />
@@ -162,6 +163,7 @@
     <ClCompile Include="Book.cpp" />
     <ClCompile Include="BookDao.cpp" />
     <ClCompile Include="BookType.cpp" />
+    <ClCompile Include="consoleCommand.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Record.cpp" />
     <ClCompile Include="RecordDao.cpp" />

@@ -5,6 +5,7 @@
 #include "Record.h"
 #include "UserDao.h"
 #include "BookDao.h"
+#include "consoleCommand.h"
 
 using namespace std;
 
@@ -21,7 +22,7 @@ int main()
 	book.setName("C++");
 	book.setISBN("111111");
 	book.setPrice(40);
-	book.setPublisher("ÖÐ¹úº£Ñó´óÑ§³ö°æÉç");
+	book.setPublisher("ï¿½Ð¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 	book.setQuantity(30);
 	book.setStatus(Book::NORMAL);
 	
@@ -39,10 +40,11 @@ int main()
 
 	user.setName("Hey");
 	userDao.updateUser(3, user);
+	console();
 
 	BookDao bookDao("data/Book.dat");
 	bookDao.insertBook(book);
-	book.setName("Êý¾Ý½á¹¹");
+	book.setName("ï¿½ï¿½ï¿½Ý½á¹¹");
 	book.setId(2);
 	bookDao.insertBook(book);
 	bool found;

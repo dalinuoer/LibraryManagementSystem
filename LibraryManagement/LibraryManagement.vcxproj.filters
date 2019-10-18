@@ -54,6 +54,9 @@
     <ClInclude Include="RecordDao.h">
       <Filter>头文件\dao</Filter>
     </ClInclude>
+    <ClInclude Include="consoleCommand.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -85,6 +88,9 @@
     </ClCompile>
     <ClCompile Include="RecordDao.cpp">
       <Filter>源文件\dao</Filter>
+    </ClCompile>
+    <ClCompile Include="consoleCommand.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
