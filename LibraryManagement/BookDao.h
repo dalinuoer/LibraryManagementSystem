@@ -3,6 +3,7 @@
 #include <string>
 #include <fstream>
 #include "book.h"
+#include "ABook.h"
 #include "Dao.hpp"
 
 using namespace std;
@@ -19,8 +20,14 @@ public:
 	Book findBookByName(const string &name, bool &found);
 	vector<Book> findAllBook();
 
+	bool insertABook(const ABook &aBook);
+	bool updateABook(int id, const ABook &aBook);
+	bool deleteABook(int id);
+	ABook findABookById(int id, bool &found);
+
 private:
 	Dao<Book> dao;
+	Dao<ABook> dao1;
 	string filename;
 	fstream file;
 };
