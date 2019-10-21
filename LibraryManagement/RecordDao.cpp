@@ -8,10 +8,6 @@ RecordDao::RecordDao(string filename) : dao(filename)
 	this->filename = filename;
 }
 
-RecordDao::RecordDao(string filename) : dao(filename)
-{
-}
-
 RecordDao::~RecordDao()
 {
 }

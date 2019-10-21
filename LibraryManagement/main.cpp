@@ -22,7 +22,7 @@ int main()
 	book.setName("C++");
 	book.setISBN("111111");
 	book.setPrice(40);
-	book.setPublisher("�й������ѧ������");
+	book.setPublisher("中国海洋大学");
 	book.setQuantity(30);
 	book.setStatus(Book::NORMAL);
 	
