@@ -1,7 +1,7 @@
 #include "BookDao.h"
 
 
-BookDao::BookDao(string filename) : dao(filename)
+BookDao::BookDao(string filename) : dao(filename),dao1(filename)
 {
 	this->filename = filename;
 }
