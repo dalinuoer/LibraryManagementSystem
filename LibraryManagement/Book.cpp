@@ -21,6 +21,16 @@ void Book::setId(const int id)
 	this->id = id;
 }
 
+int Book::getTypeId()
+{
+	return this->typeId;
+}
+
+void Book::setTypeId(const int typeId)
+{
+	this->typeId = typeId;
+}
+
 string Book::getName()
 {
 	return string(this->name);
@@ -29,6 +39,16 @@ string Book::getName()
 void Book::setName(const string &name)
 {
 	strcpy(this->name, name.c_str());
+}
+
+string Book::getAuthor()
+{
+	return string(this->author);
+}
+
+void Book::setAuthor(const string &author)
+{
+	strcpy(this->author, author.c_str());
 }
 
 string Book::getPublisher()

@@ -17,8 +17,12 @@ public:
 	~Book();
 	int getId();
 	void setId(const int id);
+	int getTypeId();
+	void setTypeId(const int typeId);
 	string getName();
 	void setName(const string &name);
+	string getAuthor();
+	void setAuthor(const string &author);
 	string getPublisher();
 	void setPublisher(const string &publisher);
 	string getISBN();

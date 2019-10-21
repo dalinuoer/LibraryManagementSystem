@@ -183,7 +183,13 @@ void findUserById()
 
 	User user;
 	//user = userService.findUserById(id);
+	if (user.getName() == "")
+	{
+		cout << "此用户不存在！" << endl;
+		return;
+	}
 	printUserInfo(user);
+	cout << "查询用户信息成功！" << endl;
 }
 
 void findUserByName()
@@ -200,6 +206,7 @@ void findUserByName()
 		return;
 	}
 	printUserInfo(user);
+	cout << "查询用户信息成功！" << endl;
 }
 
 void findOneUser()
@@ -235,13 +242,191 @@ void findOneUser()
 void findAllUser()
 {
 	/*
-	Vector<User> users = userService.findAllUser();
+	vector<User> users = userService.findAllUser();
 	vector<User>::iterator it = users.begin();
 	while (it != users.end()) 
 	{
 		printUserInfo(users[it]);
 		it++;
+	}
+	*/
+	cout << "查询成功"<< endl;
+}
+
+//BookService bookService;
+//TypeService typeService;
+
+void addBook()//增加一类书
+{
+	Book book;
+
+	int typeId;
+	string name;
+	string author;
+	string publisher;
+	string ISBN;
+	double price;
+	int quantity;
+
+	cout << "请输入书籍的书名：";
+	cin >> name;
+	book.setName(name);
+
+	cout << "请输入书籍的作者：";
+	cin >> author;
+	book.setAuthor(author);
+	/*
+	typeService.findAllType();
+	cout << "请输入书籍类型前面的数字代码：";
+	cin >> typeId;
+	book.setTypeId(typeId);
+	*/
+	cout << "请输入书籍的出版社：";
+	cin >> publisher;
+	book.setPublisher(publisher);
+
+	cout << "请输入书籍的ISBN：";
+	cin >> ISBN;
+	book.setISBN(ISBN);
+
+	cout << "请输入书籍的价格：";
+	cin >> price;
+	book.setPrice(price);
+
+	cout << "请输入书籍的数量：";
+	cin >> quantity;
+	book.setQuantity(quantity);
+
+	book.setStatus(Book::NORMAL);
+	/*
+	if (bookService.addBook(book))
+	{
+		cout << "增加书籍成功！" << endl;
+	}
+	else
+	{
+		cout << "增加书籍失败！" << endl;
 	}*/
+}
+
+void delBook()
+{
+	int id;
+	cout << "请输入要删除书籍的ID：";
+	cin >> id;
+	/*
+	if (bookService.delBook(id))
+	{
+		cout << "删除书籍成功！" << endl;
+	}
+	else
+	{
+		cout << "删除书籍失败！" << endl;
+	}*/
+}
+
+void modifyBookInfo()
+{
+	Book book;
+
+	int typeId;
+	string name;
+	string author;
+	string publisher;
+	string ISBN;
+	double price;
+	int quantity;
+	int status;
+
+	cout << "请输入书籍的书名：";
+	cin >> name;
+	book.setName(name);
+
+	cout << "请输入书籍的作者：";
+	cin >> author;
+	book.setAuthor(author);
+	/*
+	typeService.findAllType();
+	cout << "请输入书籍类型前面的数字代码：";
+	cin >> typeId;
+	book.setTypeId(typeId);
+	*/
+	cout << "请输入书籍的出版社：";
+	cin >> publisher;
+	book.setPublisher(publisher);
+
+	cout << "请输入书籍的ISBN：";
+	cin >> ISBN;
+	book.setISBN(ISBN);
+
+	cout << "请输入书籍的价格：";
+	cin >> price;
+	book.setPrice(price);
+
+	cout << "请输入书籍的数量：";
+	cin >> quantity;
+	book.setQuantity(quantity);
+
+	cout << "请输入书籍的状态(0-NORMAL,1-DELETED)：";
+	cin >> status;
+	if (status == 0)
+	{
+		book.setStatus(Book::NORMAL);
+	}
+	else
+	{
+		book.setStatus(Book::DELETED);
+	}
+	/*
+	if (bookService.changeBookInfo(id,book))
+	{
+		cout << "修改书籍信息成功！" << endl;
+	}
+	else
+	{
+		cout << "修改书籍信息失败！" << endl;
+	}
+	*/
+}
+void printBookInfo(Book book)
+{
+	cout << "书籍ID：" << book.getId() << endl;
+	cout << "书名：" << book.getName() << endl;
+	cout << "用户类型：";
+	if (user.getType() == 0)
+	{
+		cout << "学生" << endl;
+	}
+	else
+	{
+		cout << "教师" << endl;
+	}
+	cout << "用户状态：";
+	if (user.getStatus() == 0)
+	{
+		cout << "正常" << endl;
+	}
+	else if (user.getStatus() == 1)
+	{
+		cout << "被删除" << endl;
+	}
+	else
+	{
+		cout << "书已借满" << endl;
+	}
+}
+
+void findAllBook()
+{
+	/*
+	vector<Book> books = bookService.findAllBook();
+	vector<Book>::iterator it = books.begin();
+	while (it != books.end())
+	{
+		printBookInfo(books[it]);
+		it++;
+	}
+	*/
 }
 
 void console()
@@ -278,11 +463,9 @@ void console()
 				break;
 			case 4:
 				findOneUser();
-				cout << "查询用户信息成功！" << endl;
 				break;
 			case 5:
 				findAllUser();
-				cout << "查询所有用户信息成功！" << endl;
 				break;
 			default:
 				cout << "您输入的数字有误，请检查后重新输入！" << endl;
@@ -298,16 +481,16 @@ void console()
 			switch (choice2)
 			{
 			case 1:
-				cout << "增加书籍成功！" << endl;
+				addBook();
 				break;
 			case 2:
-				cout << "删除书籍成功！" << endl;
+				delBook();
 				break;
 			case 3:
-				cout << "修改书籍信息成功！" << endl;
+				modifyBookInfo();
 				break;
 			case 4:
-				cout << "查询书籍信息成功！" << endl;
+				cout << "查询所有书籍信息成功！" << endl;
 				break;
 			default:
 				cout << "您输入的数字有误，请检查后重新输入！" << endl;
