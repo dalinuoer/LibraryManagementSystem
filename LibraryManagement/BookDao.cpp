@@ -1,8 +1,7 @@
 #include "BookDao.h"
 
 
-
-BookDao::BookDao(string filename) : dao(filename)
+BookDao::BookDao(string filename) : dao(filename),dao1(filename)
 {
 	this->filename = filename;
 }
@@ -53,4 +52,24 @@ Book BookDao::findBookByName(const string &name, bool &found)
 vector<Book> BookDao::findAllBook()
 {
 	return dao.findAll();
+}
+
+bool BookDao::insertABook(const ABook &aBook)
+{
+	return dao1.insert(aBook);
+}
+
+bool BookDao::updateABook(int id, const ABook &aBook)
+{
+	return dao1.update(id, aBook);
+}
+
+bool BookDao::deleteABook(int id)
+{
+	return dao1.del(id);
+}
+
+ABook BookDao::findABookById(int id, bool &found)
+{
+	return dao1.findById(id, found);
 }

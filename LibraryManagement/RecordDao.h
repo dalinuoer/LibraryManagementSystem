@@ -1,5 +1,5 @@
 #pragma once
-#include"Record.h"
+#include "Record.h"
 #include <vector>
 #include <string>
 #include <fstream>
@@ -24,4 +24,3 @@ private:
 	string filename;
 	fstream file;
 };
-

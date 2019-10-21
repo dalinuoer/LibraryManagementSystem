@@ -32,7 +32,7 @@ public:
 		return true;
 	}
 
-	bool update(int id, T data)
+	bool update(int id,const T &data)
 	{
 		int pos = findPosition(id);
 		if (pos != -1)

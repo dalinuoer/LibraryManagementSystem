@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "consoleCommand.h"
 #include "User.h"
 #include "Book.h"
@@ -5,14 +7,13 @@
 #include "ABook.h"
 #include "Record.h"
 #include "UserDao.h"
-#include <iostream>
 
 using namespace std;
 
 void printMenu()
 {
 	cout << "*****欢迎使用图书馆管理系统!*****" << endl;
-	cout << "**********系统功能如下**********" << endl;
+	cout << "**********系统功能如下：********" << endl;
 	cout << "***********1-用户操作***********" << endl;
 	cout << "***********2-书籍操作***********" << endl;
 	cout << "**********3-借还书操作**********" << endl;
@@ -44,6 +45,8 @@ void printFunction(int num)
 	}
 }
 
+//UserService userService;
+
 void addUser()
 {
 	User user;
@@ -65,9 +68,15 @@ void addUser()
 	{
 		user.setType(User::TEACHER);
 	}
-	
-	//UserService userService;
-	//userService.insertUser(user);
+	/*
+	if (userService.addtUser(user))
+	{
+		cout << "添加用户成功！" << endl;
+	}
+	else
+	{
+		cout << "添加用户失败！" << endl;
+	}*/
 }
 
 void deleteUser()
@@ -75,9 +84,15 @@ void deleteUser()
 	int id;
 	cout << "请输入要被删除的用户的ID：";
 	cin >> id;
-
-	//UserService userService;
-	//userService.delUser(id);
+	/*
+	if (userService.delUser(id))
+	{
+		cout << "删除用户成功！" << endl;
+	}
+	else
+	{
+		cout << "删除用户失败！" << endl;
+	}*/
 }
 
 void modifyUserInfo()
@@ -121,9 +136,15 @@ void modifyUserInfo()
 	{
 		user.setStatus(User::FULL);
 	}
-
-	//UserService userService;
-	//userService.changeUseInfo(id,user);
+	/*
+	if (userService.changeUseInfo(id, user))
+	{
+		cout << "修改用户信息成功！" << endl;
+	}
+	else
+	{
+		cout << "修改用户信息失败！" << endl;
+	}*/
 }
 
 void printUserInfo(User user)
@@ -161,7 +182,6 @@ void findUserById()
 	cin >> id;
 
 	User user;
-	//UserService userService;
 	//user = userService.findUserById(id);
 	printUserInfo(user);
 }
@@ -173,8 +193,12 @@ void findUserByName()
 	cin >> name;
 
 	User user;
-	//UserService userService;
-	//user = userService.findUserByName(name);
+	//user = userService.findUserByName(name);//暂时假定用户名不重，根据用户名查询到有且仅有一个用户，若用户不存在则打印用户不存在
+	if (user.getName() == "")
+	{
+		cout << "此用户不存在！" << endl;
+		return;
+	}
 	printUserInfo(user);
 }
 
@@ -186,10 +210,22 @@ void findOneUser()
 	switch (choice)
 	{
 	case 1:
-		findUserById();
+		/*
+		int id;
+		cout << "请输入要查询用户的ID：";
+		cin >> id;
+		User user = findUserById(id);
+		printUserInfo(user);
+		*/
 		break;
 	case 2:
-		findUserByName();
+		/*
+		string name;
+		cout << "请输入要查询用户的用户名：";
+		cin >> name;
+		User user = findUserByName(name);
+		printUserInfo(user);
+		*/
 		break;
 	default:
 		cout << "您输入的数字有误，请检查后再输入！" << endl;
@@ -198,14 +234,14 @@ void findOneUser()
 
 void findAllUser()
 {
-	//UserService userService;
-	//Vector<User> users = userService.findAllUser();
-	//vector<User>::iterator it = users.begin();
-	//while (it != users.end()) 
-	//{
-	//	printUserInfo(users[it]);
-	//	it++;
-	//}
+	/*
+	Vector<User> users = userService.findAllUser();
+	vector<User>::iterator it = users.begin();
+	while (it != users.end()) 
+	{
+		printUserInfo(users[it]);
+		it++;
+	}*/
 }
 
 void console()
@@ -233,15 +269,12 @@ void console()
 			{
 			case 1:
 				addUser();
-				cout << "添加用户成功！" << endl;
 				break;
 			case 2:
 				deleteUser();
-				cout << "删除用户成功！" << endl;
 				break;
 			case 3:
 				modifyUserInfo();
-				cout << "修改用户信息成功！" << endl;
 				break;
 			case 4:
 				findOneUser();

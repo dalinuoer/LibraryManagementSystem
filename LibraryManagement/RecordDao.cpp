@@ -1,8 +1,12 @@
 #include "RecordDao.h"
-#include<iostream>
+#include <iostream>
 
 using namespace std;
 
+RecordDao::RecordDao(string filename) : dao(filename)
+{
+	this->filename = filename;
+}
 
 RecordDao::RecordDao(string filename) : dao(filename)
 {
@@ -10,7 +14,6 @@ RecordDao::RecordDao(string filename) : dao(filename)
 
 RecordDao::~RecordDao()
 {
-
 }
 
 bool RecordDao::insertRecord(const Record &record)
@@ -40,7 +43,7 @@ vector<Record> RecordDao::findRecordByBookId(int bookId)
 	while (!file.eof())
 	{
 		Record record;
-		file.read((char*)&record, sizeof(Record));
+		file.read((char *)&record, sizeof(Record));
 		if (file.gcount() != 0)
 		{
 			if (record.getBookId() == bookId)
@@ -60,7 +63,7 @@ vector<Record> RecordDao::findRecordByUserId(int userId)
 	while (!file.eof())
 	{
 		Record record;
-		file.read((char*)&record, sizeof(Record));
+		file.read((char *)&record, sizeof(Record));
 		if (file.gcount() != 0)
 		{
 			if (record.getUserId() == userId)
