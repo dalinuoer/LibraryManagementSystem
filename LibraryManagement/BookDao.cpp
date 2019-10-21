@@ -46,6 +46,7 @@ Book BookDao::findBookByName(const string &name, bool &found)
 			break;
 		}
 	}
+	file.close();
 	return data;
 }
 

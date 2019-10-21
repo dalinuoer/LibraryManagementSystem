@@ -49,6 +49,7 @@ User UserDao::findUserByName(const string &name, bool &found)
 			break;
 		}
 	}
+	file.close();
 	return data;
 }
 
