@@ -36,23 +36,23 @@ User UserDao::findUserById(int id, bool &found)
 
 User UserDao::findUserByName(const string &name, bool &found)
 {
-	return User();
+	User data;
+	file.open(filename, ios::binary | ios::in);
+	file.seekg(ios::beg);
+	found = false;
+	while (!file.eof())
+	{
+		file.read((char*)&data,sizeof(User));
+		if (data.getName() == name)
+		{
+			found = true;
+			break;
+		}
+	}
+	return data;
 }
 
 vector<User> UserDao::findAllUser()
 {
-	vector<User> userList;
-	file.open(filename, ios::binary | ios::in);
-	file.seekg(ios::beg);
-	while (!file.eof())
-	{
-		User user;
-		file.read((char*)&user, sizeof(User));
-		if (file.gcount() != 0)
-		{
-			userList.push_back(user);
-		}
-	}
-	file.close();
-	return userList;
+	return dao.findAll();
 }
