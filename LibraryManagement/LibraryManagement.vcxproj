@@ -150,26 +150,31 @@
     <ClInclude Include="ABook.h" />
     <ClInclude Include="Book.h" />
     <ClInclude Include="BookDao.h" />
+    <ClInclude Include="BookService.h" />
     <ClInclude Include="BookType.h" />
-    <ClInclude Include="consoleCommand.h" />
+    <ClInclude Include="ConsoleCommand.h" />
     <ClInclude Include="Record.h" />
     <ClInclude Include="RecordDao.h" />
+    <ClInclude Include="RecordService.h" />
     <ClInclude Include="TypeDao.h" />
     <ClInclude Include="User.h" />
     <ClInclude Include="UserDao.h" />
+    <ClInclude Include="UserService.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ABook.cpp" />
     <ClCompile Include="Book.cpp" />
     <ClCompile Include="BookDao.cpp" />
     <ClCompile Include="BookType.cpp" />
-    <ClCompile Include="consoleCommand.cpp" />
+    <ClCompile Include="ConsoleCommand.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Record.cpp" />
     <ClCompile Include="RecordDao.cpp" />
+    <ClCompile Include="RecordService.cpp" />
     <ClCompile Include="TypeDao.cpp" />
     <ClCompile Include="User.cpp" />
     <ClCompile Include="UserDao.cpp" />
+    <ClCompile Include="UserService.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Dao.hpp" />

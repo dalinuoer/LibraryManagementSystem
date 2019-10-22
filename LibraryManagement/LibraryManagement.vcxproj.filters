@@ -25,6 +25,12 @@
     <Filter Include="源文件\dao">
       <UniqueIdentifier>{3851ec64-5399-418b-8323-496c15705563}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\service">
+      <UniqueIdentifier>{112bac07-522a-4041-be79-e23cb9b20871}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\service">
+      <UniqueIdentifier>{0bf76df7-454c-47c8-b56d-dc743afa222b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ABook.h">
@@ -54,8 +60,17 @@
     <ClInclude Include="RecordDao.h">
       <Filter>头文件\dao</Filter>
     </ClInclude>
-    <ClInclude Include="consoleCommand.h">
+    <ClInclude Include="ConsoleCommand.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BookService.h">
+      <Filter>头文件\service</Filter>
+    </ClInclude>
+    <ClInclude Include="UserService.h">
+      <Filter>头文件\service</Filter>
+    </ClInclude>
+    <ClInclude Include="RecordService.h">
+      <Filter>头文件\service</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -89,8 +104,14 @@
     <ClCompile Include="RecordDao.cpp">
       <Filter>源文件\dao</Filter>
     </ClCompile>
-    <ClCompile Include="consoleCommand.cpp">
+    <ClCompile Include="ConsoleCommand.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="UserService.cpp">
+      <Filter>源文件\service</Filter>
+    </ClCompile>
+    <ClCompile Include="RecordService.cpp">
+      <Filter>源文件\service</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
