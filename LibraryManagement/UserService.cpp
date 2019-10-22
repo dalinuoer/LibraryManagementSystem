@@ -1,38 +1,35 @@
 #include "UserService.h"
-#include <string>
-#include <vector>
-#include <iostream>
 #include "User.h"
-#include"UserDao.h"
-//#include"RecordService.h"
-using namespace std;
+#include "UserDao.h"
 
-UserDao* userDao = new UserDao("filename.txt");
 
-bool UsersService::addUser(User user)
+UserService::UserService():userDao("data/User.dat")
 {
-	User u = userDao->findUserById(user.getId(), found);
-	if (u != NULL) { // 如果要添加的name已经存在
-		return -1;
-	}
-	return userDao->insertUser(user);
-
 }
 
-bool UsersService::delUser(int id)
-{
-	return userDao->deleteUser(id);
-
+bool UserService::addUser(const User &user)
+{	
+	return userDao.insertUser(user);
 }
 
-vector<User> UsersService::findAllUser()
+bool UserService::delUser(int id)
 {
-	return userDao->findAllUser();
+	return userDao.deleteUser(id);
 }
 
-bool UsersService::changeUserinfo(int userid, User user)
+vector<User> UserService::findAllUser()
 {
-	return userDao->updateUser(userid, user);
+	return userDao.findAllUser();
+}
+
+int UserService::changeUserInfo(int userid, const User &user)
+{
+	return userDao.updateUser(userid, user);
+}
+
+User UserService::findUserById(int id, bool &found)
+{
+	return userDao.findUserById(id, found);
 }
 
 

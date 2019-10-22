@@ -7,6 +7,9 @@
 #include "ABook.h"
 #include "Record.h"
 #include "UserDao.h"
+#include "UserService.h"
+#include "BookService.h"
+#include "RecordService.h"
 
 using namespace std;
 
