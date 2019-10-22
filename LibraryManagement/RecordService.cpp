@@ -14,18 +14,21 @@ int RecordService::borrowBook(int userId, int AbookId)
 	
 	//检测书是否存在（书应该存在，因为上层传输来的是bookId 是经过其他途径查询获知）
 	bool foundB;
-	ABook abook = bookDao.findABookById(AbookId, foundB);
+	ABook abook = aBookDao.findABookById(AbookId, foundB);
 	if (!foundB) {
 		return -2;													//未找到书		-2
 	}
 	
 	//检验书是否被删除													//书已被删除    -3
-	if (abook.getStatus() == ABook::DELETED) { return -3; }
-	
+	if (abook.getStatus() == ABook::DELETED) 
+	{ 
+		return -3; 
+	}
 	
 	//检测该书是否还有剩余	
 	Book book = bookDao.findBookById(abook.getBookId(), foundB);
-	if (book.getQuantity == 0) {
+	if (book.getQuantity() == 0) 
+	{
 		return -4;													//书无剩余		-4
 	}
 	//有剩余继续进行借阅操作
@@ -34,9 +37,9 @@ int RecordService::borrowBook(int userId, int AbookId)
 	record.setUserId(userId);
 	record.setStatus(Record::NORMAL);
 	record.setId(0);
-	record.setDate();												//《========================设置各种时间=======================================
-	record.setDuration();
-	record.setReturnDate();
+	record.setDate("");												//《========================设置各种时间=======================================
+	record.setDuration(15);
+	record.setReturnDate("");
 	book.setQuantity(book.getQuantity() - 1);
 	abook.setStatus(ABook::BORROWED);
 	if (recordDao.insertRecord(record)) {
@@ -58,8 +61,8 @@ int RecordService::renewBook(int recordId, int duration)
 		return -2;														//延长时间应为正整数 
 	}
 	//更新时长
-	if (record.getStatus == Record::EXCEED) { record.setStatus(Record::NORMAL); }
-	record.setDuration(record.getDuration + duration);					//设置新借阅时长
+	if (record.getStatus() == Record::EXCEED) { record.setStatus(Record::NORMAL); }
+	record.setDuration(record.getDuration() + duration);					//设置新借阅时长
 
 	if (recordDao.updateRecord(recordId, record)) {
 		return 0;														//还书成功
@@ -73,7 +76,7 @@ int  RecordService::returnBook(int recordId)
 	bool found;
 	Record record = recordDao.findRecordById(recordId, found);		  //《=============尚未定义
 	
-	ABook abook = findABookById(record.getABookId());									
+	ABook abook = aBookDao.findABookById(record.getABookId(), found);									
 	abook.setStatus(ABook::NORMAL);
 	
 	Book book = bookDao.findBookById(record.getBookId(),found);

@@ -1,12 +1,15 @@
 #pragma once
-#include"ABook.h"
-#include"Book.h"
-#include"BookDao.h"
-#include"User.h"
-#include"UserDao.h"
-#include"Record.h"
-#include"RecordDao.h"
-#include<vector>
+#include "ABook.h"
+#include "ABookDao.h"
+#include "Book.h"
+#include "BookDao.h"
+#include "User.h"
+#include "UserDao.h"
+#include "Record.h"
+#include "RecordDao.h"
+#include <vector>
+
+using namespace std;
 
 class RecordService {
 public:	
@@ -21,5 +24,6 @@ public:
 private:
 	BookDao bookDao;
 	UserDao userDao;
+	ABookDao aBookDao;
 	RecordDao recordDao;
 };

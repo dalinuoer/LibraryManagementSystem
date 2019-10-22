@@ -1,6 +1,6 @@
 #include "TypeDao.h"
 
-TypeDao::TypeDao() : dao("data/Type.dat")
+TypeDao::TypeDao(string filename) : dao(filename)
 {
 }
 
@@ -23,6 +23,11 @@ bool TypeDao::updateType(int id, const BookType &type)
 bool TypeDao::deleteType(int id)
 {
 	return dao.del(id);
+}
+
+BookType TypeDao::findTypeById(int id, bool &found)
+{
+	return dao.findById(id, found);
 }
 
 vector<BookType> TypeDao::findAllType()

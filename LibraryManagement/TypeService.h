@@ -9,6 +9,7 @@ class TypeService
 public:
 	TypeService();
 	~TypeService();
+	BookType findTypeById(int id, bool &found);
 	vector<BookType> findAllType();
 
 private:

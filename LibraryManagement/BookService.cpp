@@ -11,6 +11,11 @@ bool BookService::addBook(Book book)
 	return bookDao.insertBook(book);
 }
 
+bool BookService::changeBookInfo(int id, const Book& book)
+{
+	return bookDao.updateBook(id, book);
+}
+
 bool BookService::delBook(int id)
 {
 	return bookDao.deleteBook(id);

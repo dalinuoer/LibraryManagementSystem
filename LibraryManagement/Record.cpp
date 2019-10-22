@@ -41,6 +41,16 @@ void Record::setBookId(const int bookId)
 	this->bookId = bookId;
 }
 
+int Record::getABookId()
+{
+	return this->aBookId;
+}
+
+void Record::setABookId(int aBookId)
+{
+	this->aBookId = aBookId;
+}
+
 string Record::getDate()
 {
 	return string(this->date);

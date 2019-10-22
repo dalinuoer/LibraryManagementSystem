@@ -32,6 +32,11 @@ vector<Record> RecordDao::findAllRecord()
 	return dao.findAll();
 }
 
+Record RecordDao::findRecordById(int id, bool &found)
+{
+	return dao.findById(id, found);
+}
+
 vector<Record> RecordDao::findRecordByBookId(int bookId)
 {
 	vector<Record> dataList;
@@ -39,7 +44,7 @@ vector<Record> RecordDao::findRecordByBookId(int bookId)
 	while (!file.eof())
 	{
 		Record record;
-		file.read((char *)&record, sizeof(Record));
+		file.read((char*)&record, sizeof(Record));
 		if (file.gcount() != 0)
 		{
 			if (record.getBookId() == bookId)
@@ -70,4 +75,23 @@ vector<Record> RecordDao::findRecordByUserId(int userId)
 	}
 	file.close();
 	return dataList;
+}
+
+Record RecordDao::findRecordByUserIdAndBookId(int userId, int bookId, bool &found)
+{
+	Record data;
+	file.open(filename, ios::binary | ios::in);
+	file.seekg(ios::beg);
+	found = false;
+	while (!file.eof())
+	{
+		file.read((char*)&data, sizeof(Record));
+		if (data.getBookId() == bookId && data.getUserId() == userId)
+		{
+			found = true;
+			break;
+		}
+	}
+	file.close();
+	return data;
 }

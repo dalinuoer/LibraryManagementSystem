@@ -32,6 +32,11 @@ User UserService::findUserById(int id, bool &found)
 	return userDao.findUserById(id, found);
 }
 
+User UserService::findUserByName(string username, bool &found)
+{
+	return userDao.findUserByName(username, found);
+}
+
 
 
 

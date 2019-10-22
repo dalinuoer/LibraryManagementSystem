@@ -8,11 +8,12 @@ using namespace std;
 class TypeDao
 {
 public:
-	TypeDao();
+	TypeDao(string filename);
 	~TypeDao();
 	bool insertType(const BookType &type);
 	bool updateType(int id, const BookType &type);
 	bool deleteType(int id);
+	BookType findTypeById(int id, bool &found);
 	vector<BookType> findAllType();
 private:
 	Dao<BookType> dao;

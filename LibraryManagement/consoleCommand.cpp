@@ -1,15 +1,5 @@
+#include "ConsoleCommand.h"
 #include <iostream>
-
-#include "consoleCommand.h"
-#include "User.h"
-#include "Book.h"
-#include "BookType.h"
-#include "ABook.h"
-#include "Record.h"
-#include "UserDao.h"
-#include "UserService.h"
-#include "BookService.h"
-#include "RecordService.h"
 
 using namespace std;
 
@@ -72,7 +62,7 @@ void addUser()
 		user.setType(User::TEACHER);
 	}
 	
-	if (userService.addtUser(user))
+	if (userService.addUser(user))
 	{
 		cout << "添加用户成功！" << endl;
 	}
@@ -140,7 +130,7 @@ void modifyUserInfo()
 		user.setStatus(User::FULL);
 	}
 	
-	if (userService.changeUseInfo(id, user))
+	if (userService.changeUserInfo(id, user))
 	{
 		cout << "修改用户信息成功！" << endl;
 	}
@@ -185,8 +175,9 @@ void findUserById()
 	cin >> id;
 
 	User user;
-	user = userService.findUserById(id);
-	if (user.getName() == "")
+	bool found;
+	user = userService.findUserById(id, found);
+	if (!found)
 	{
 		cout << "此用户不存在！" << endl;
 		return;
@@ -202,8 +193,9 @@ void findUserByName()
 	cin >> name;
 
 	User user;
-	user = userService.findUserByName(name);//暂时假定用户名不重，根据用户名查询到有且仅有一个用户，若用户不存在则打印用户不存在
-	if (user.getName() == "")
+	bool found;
+	user = userService.findUserByName(name, found);//暂时假定用户名不重，根据用户名查询到有且仅有一个用户，若用户不存在则打印用户不存在
+	if (!found)
 	{
 		cout << "此用户不存在！" << endl;
 		return;
@@ -220,22 +212,10 @@ void findOneUser()
 	switch (choice)
 	{
 	case 1:
-		
-		int id;
-		cout << "请输入要查询用户的ID：";
-		cin >> id;
-		User user = findUserById(id);
-		printUserInfo(user);
-		
+		findUserById();
 		break;
 	case 2:
-		
-		string name;
-		cout << "请输入要查询用户的用户名：";
-		cin >> name;
-		User user = findUserByName(name);
-		printUserInfo(user);
-
+		findUserByName();
 		break;
 	default:
 		cout << "您输入的数字有误，请检查后再输入！" << endl;
@@ -248,7 +228,7 @@ void findAllUser()
 	vector<User>::iterator it = users.begin();
 	while (it != users.end()) 
 	{
-		printUserInfo(users[it]);
+		printUserInfo(*it);
 		it++;
 	}
 	
@@ -330,7 +310,6 @@ void delBook()
 void modifyBookInfo()
 {
 	Book book;
-
 	int typeId;
 	string name;
 	string author;
@@ -339,6 +318,10 @@ void modifyBookInfo()
 	double price;
 	int quantity;
 	int status;
+
+	int id;
+	cout << "请输入要修改的书籍编号：";
+	cin >> id;
 
 	cout << "请输入书籍的书名：";
 	cin >> name;
@@ -380,7 +363,7 @@ void modifyBookInfo()
 		book.setStatus(Book::DELETED);
 	}
 
-	if (bookService.changeBookInfo(id,book))
+	if (bookService.changeBookInfo(id, book))
 	{
 		cout << "修改书籍信息成功！" << endl;
 	}
@@ -391,8 +374,9 @@ void modifyBookInfo()
 }
 void printBookInfo(Book book)
 {
+	bool found;
 	cout << "书籍ID：" << book.getId() << endl;
-	cout << "书籍类别：" << typeService.findTypeById(book.getTypeId()) << endl;
+	cout << "书籍类别：" << typeService.findTypeById(book.getTypeId(), found).getName() << endl;
 	cout << "书名：" << book.getName() << endl;
 	cout << "作者：" << book.getAuthor() << endl;
 	cout << "出版社：" << book.getPublisher() << endl;
@@ -416,7 +400,7 @@ void findAllBook()
 	vector<Book>::iterator it = books.begin();
 	while (it != books.end())
 	{
-		printBookInfo(books[it]);
+		printBookInfo(*it);
 		it++;
 	}
 	cout << "查询所有书籍信息成功！" << endl;

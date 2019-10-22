@@ -22,6 +22,8 @@ public:
 	void setUserId(const int userId);
 	int getBookId();
 	void setBookId(const int bookId);
+	int getABookId();
+	void setABookId(int aBookId);
 	string getDate();
 	void setDate(const string &date);
 	int getDuration();
@@ -35,6 +37,7 @@ private:
 	int id;
 	int userId;
 	int bookId;
+	int aBookId;
 	char date[40];
 	int duration;
 	char returnDate[40];

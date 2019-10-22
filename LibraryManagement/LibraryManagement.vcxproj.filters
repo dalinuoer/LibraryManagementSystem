@@ -72,6 +72,12 @@
     <ClInclude Include="RecordService.h">
       <Filter>头文件\service</Filter>
     </ClInclude>
+    <ClInclude Include="ABookDao.h">
+      <Filter>头文件\dao</Filter>
+    </ClInclude>
+    <ClInclude Include="TypeService.h">
+      <Filter>头文件\service</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -111,6 +117,15 @@
       <Filter>源文件\service</Filter>
     </ClCompile>
     <ClCompile Include="RecordService.cpp">
+      <Filter>源文件\service</Filter>
+    </ClCompile>
+    <ClCompile Include="ABookDao.cpp">
+      <Filter>源文件\dao</Filter>
+    </ClCompile>
+    <ClCompile Include="BookService.cpp">
+      <Filter>源文件\service</Filter>
+    </ClCompile>
+    <ClCompile Include="TypeService.cpp">
       <Filter>源文件\service</Filter>
     </ClCompile>
   </ItemGroup>
