@@ -1,6 +1,6 @@
 #include "ABookDao.h"
 
-ABookDao::ABookDao(string filename) : dao(filename)
+ABookDao::ABookDao(const string &filename) : dao(filename)
 {
 }
 

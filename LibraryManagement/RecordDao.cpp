@@ -3,9 +3,8 @@
 
 using namespace std;
 
-RecordDao::RecordDao(string filename) : dao(filename)
+RecordDao::RecordDao(const string &filename) : dao(filename), filename(filename)
 {
-	this->filename = filename;
 }
 
 RecordDao::~RecordDao()

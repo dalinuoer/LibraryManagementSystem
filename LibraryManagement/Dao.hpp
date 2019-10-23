@@ -10,9 +10,17 @@ template <class T>
 class Dao
 {
 public:
-	Dao(string filename)
+	Dao(const string &filename)
 	{
 		this->filename = filename;
+		file.open(filename, ios::in);
+		if (!file)
+		{
+			file.close();
+			file.open(filename, ios::out);
+			file.close();
+		}
+		file.close();
 	}
 
 	~Dao() 
@@ -21,7 +29,11 @@ public:
 
 	bool insert(const T &data)
 	{
-		file.open(filename, ios::app);
+		file.open(filename, ios::binary | ios::out | ios::app);
+		if (!file)
+		{
+			cout << "打开文件失败" << endl;
+		}
 		file.write((char*)&data, sizeof(T));
 		file.close();
 		return true;

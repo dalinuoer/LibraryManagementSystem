@@ -2,6 +2,8 @@
 #include <fstream>
 #include "User.h"
 #include "Book.h"
+#include "ABook.h"
+#include "BookType.h"
 #include "Record.h"
 #include "UserDao.h"
 #include "BookDao.h"
@@ -11,45 +13,20 @@ using namespace std;
 
 int main()
 {
-	User user;
-	user.setId(1);
-	user.setName("Hi");
-	user.setType(User::STUDENT);
-	user.setStatus(User::NORMAL);
+	TypeDao typeDao("data/Type.dat");
 
-	Book book;
-	book.setId(1);
-	book.setName("C++");
-	book.setISBN("111111");
-	book.setPrice(40);
-	book.setPublisher("涓浗娴锋磱澶у");
-	book.setQuantity(30);
-	book.setStatus(Book::NORMAL);
-	
-	
-	UserDao userDao("data/User.dat");
-	userDao.insertUser(user);
+	BookType type;
+	type.setId(0);
+	type.setName("计算机类");
+	typeDao.insertType(type); 
 
-	user.setId(2);
-	user.setName("Hello");
-	userDao.insertUser(user);
+	type.setId(1);
+	type.setName("文学类");
+	typeDao.insertType(type);
 
-	user.setId(3);
-	user.setName("World");
-	userDao.insertUser(user);
-
-	user.setName("Hey");
-	userDao.updateUser(3, user);
-	console();
-
-	BookDao bookDao("data/Book.dat");
-	bookDao.insertBook(book);
-	book.setName("锟斤拷锟捷结构");
-	book.setId(2);
-	bookDao.insertBook(book);
-	bool found;
-	Book book2=bookDao.findBookById(2,found);
-	cout << book2.getId() << book2.getName();
+	type.setId(2);
+	type.setName("自然科学类");
+	typeDao.insertType(type);
 
 	return 0;
 }

@@ -8,7 +8,7 @@ using namespace std;
 class ABookDao
 {
 public:
-	ABookDao(string filename);
+	ABookDao(const string &filename);
 	~ABookDao();
 	bool insertABook(const ABook &aBook);
 	bool updateABook(int id, const ABook &aBook);

@@ -3,9 +3,8 @@
 
 using namespace std;
 
-UserDao::UserDao(string filename) : dao(filename)
+UserDao::UserDao(const string &filename) : dao(filename), filename(filename)
 {
-	this->filename = filename;
 }
 
 UserDao::~UserDao()

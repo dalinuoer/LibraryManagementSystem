@@ -10,7 +10,7 @@ using namespace std;
 class UserDao
 {
 public:
-	UserDao(string filename);
+	UserDao(const string &filename);
 	~UserDao();
 	bool insertUser(const User &user);
 	bool updateUser(int id, const User &user);

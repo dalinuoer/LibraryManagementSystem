@@ -2,7 +2,7 @@
 
 
 
-BookService::BookService():bookDao("Book.dat")
+BookService::BookService():bookDao("data/Book.dat")
 {
 }
 

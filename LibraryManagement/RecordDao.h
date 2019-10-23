@@ -10,7 +10,7 @@ using namespace std;
 class RecordDao
 {
 public:
-	RecordDao(string filename);
+	RecordDao(const string &filename);
 	~RecordDao();
 	bool insertRecord(const Record &record);
 	bool deleteRecord(int id);

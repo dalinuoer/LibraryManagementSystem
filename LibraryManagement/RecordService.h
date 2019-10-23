@@ -12,6 +12,7 @@
 class RecordService {
 public:		
 	RecordService();
+	~RecordService();
 	int borrowBook(int userId, int AbookId);
 	int renewBook(int recordId, int duration);
 	bool returnBook(int recordId);

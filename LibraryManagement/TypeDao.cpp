@@ -1,6 +1,6 @@
 #include "TypeDao.h"
 
-TypeDao::TypeDao(string filename) : dao(filename)
+TypeDao::TypeDao(const string &filename) : dao(filename)
 {
 }
 

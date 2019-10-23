@@ -8,7 +8,7 @@ using namespace std;
 class TypeDao
 {
 public:
-	TypeDao(string filename);
+	TypeDao(const string &filename);
 	~TypeDao();
 	bool insertType(const BookType &type);
 	bool updateType(int id, const BookType &type);

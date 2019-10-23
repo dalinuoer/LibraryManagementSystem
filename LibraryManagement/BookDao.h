@@ -12,7 +12,7 @@ using namespace std;
 class BookDao
 {
 public:
-	BookDao(string filename);
+	BookDao(const string &filename);
 	~BookDao();
 	bool insertBook(const Book &book);
 	bool updateBook(int id, const Book &book);
