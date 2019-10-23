@@ -115,20 +115,6 @@ void modifyUserInfo()
 		user.setType(User::TEACHER);
 	}
 
-	cout << "请输入更改后的用户的状态（0-NORMAL,1-DELETED,2-FULL）：";
-	cin >> status;
-	if (status == 0)
-	{
-		user.setStatus(User::NORMAL);
-	}
-	else if (status == 1)
-	{
-		user.setStatus(User::DELETED);
-	}
-	else
-	{
-		user.setStatus(User::FULL);
-	}
 	
 	if (userService.changeUserInfo(id, user))
 	{
@@ -154,11 +140,11 @@ void printUserInfo(User user)
 		cout << "教师" << endl;
 	}
 	cout << "用户状态：";
-	if (user.getStatus() == 0)
+	if (user.getStatus() == User::NORMAL)
 	{
 		cout << "正常" << endl;
 	}
-	else if (user.getStatus() == 1)
+	else if (user.getStatus() == User::DELETED)
 	{
 		cout << "被删除" << endl;
 	}

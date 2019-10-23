@@ -13,20 +13,6 @@ using namespace std;
 
 int main()
 {
-	TypeDao typeDao("data/Type.dat");
-
-	BookType type;
-	type.setId(0);
-	type.setName("计算机类");
-	typeDao.insertType(type); 
-
-	type.setId(1);
-	type.setName("文学类");
-	typeDao.insertType(type);
-
-	type.setId(2);
-	type.setName("自然科学类");
-	typeDao.insertType(type);
-
+	console();
 	return 0;
 }
