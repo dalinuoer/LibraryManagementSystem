@@ -29,21 +29,20 @@ Book BookDao::findBookById(int id, bool &found)
 	return dao.findById(id, found);
 }
 
-vector<Book> BookDao::findBookByName(const string &name, bool &found)
+vector<Book> BookDao::findBookByName(const string &name)
 {
 	vector<Book> bookList;
 	file.open(filename, ios::binary | ios::in);
 	file.seekg(ios::beg);
-	found = false;
 	while (!file.eof())
 	{
 		Book data;
 		file.read((char*)&data, sizeof(Book));
 		if (file.gcount() != 0)
 		{
-			if (data.getName() == name)
+			if (data.getName().find(name) != string::npos)
 			{
-				found = true;
+				bookList.push_back(data);
 			}
 		}
 	}

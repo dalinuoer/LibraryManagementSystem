@@ -1,7 +1,6 @@
 #include "BookService.h"
 
 
-
 BookService::BookService():bookDao("data/Book.dat")
 {
 }
@@ -31,8 +30,7 @@ Book BookService::findBookById(int id, bool & found)
 	return bookDao.findBookById(id, found);
 }
 
-
-vector<Book> BookService::findBookByName(string name,bool &found)
+vector<Book> BookService::findBookByName(string name)
 {
-	return bookDao.findBookByName(name,found);
+	return bookDao.findBookByName(name);
 }

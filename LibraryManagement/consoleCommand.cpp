@@ -3,6 +3,11 @@
 
 using namespace std;
 
+UserService userService;
+BookService bookService;
+TypeService typeService;
+RecordService recordService;
+
 void printMenu()
 {
 	cout << "*****欢迎使用图书馆管理系统!*****" << endl;
@@ -17,28 +22,26 @@ void printFunction(int num)
 {
 	if (num == 1)	// user
 	{
-		cout << "      1-添加用户       " << endl;
-		cout << "      2-删除用户       " << endl;
-		cout << "    3-修改用户信息     " << endl;
-		cout << "    4-查询用户信息     " << endl;
-		cout << "  5-查询所有用户信息   " << endl;
+		cout << "1-添加用户       " << endl;
+		cout << "2-删除用户       " << endl;
+		cout << "3-修改用户信息     " << endl;
+		cout << "4-查询用户信息     " << endl;
+		cout << "5-查询所有用户信息   " << endl;
 	}
 	else if (num == 2)	// book
 	{
-		cout << "      1-增加图书       " << endl;
-		cout << "      2-删除图书       " << endl;
-		cout << "    3-修改图书信息     " << endl;
-		cout << "    4-查询图书信息     " << endl;
+		cout << "1-增加图书       " << endl;
+		cout << "2-删除图书       " << endl;
+		cout << "3-修改图书信息     " << endl;
+		cout << "4-查询图书信息     " << endl;
 	}
 	else if (num == 3)	// borrow and return
 	{
-		cout << "      1-借阅图书       " << endl;
-		cout << "      2-归还图书       " << endl;
-		cout << "      3-续借图书       " << endl;
+		cout << "1-借阅图书       " << endl;
+		cout << "2-归还图书       " << endl;
+		cout << "3-续借图书       " << endl;
 	}
 }
-
-UserService userService;
 
 void addUser()
 {
@@ -221,8 +224,7 @@ void findAllUser()
 	cout << "查询成功"<< endl;
 }
 
-BookService bookService;
-TypeService typeService;
+
 
 void addBook()//增加一类书
 {
@@ -392,7 +394,6 @@ void findAllBook()
 	cout << "查询所有书籍信息成功！" << endl;
 }
 
-RecordService recordService;
 
 void borrowBook()
 {

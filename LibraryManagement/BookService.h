@@ -10,7 +10,7 @@ public:
 	bool changeBookInfo(int id, const Book& book);
 	bool delBook(int id);
 	vector<Book> findAllBook();
-	vector<Book> findBookByName(string name, bool &found);
+	vector<Book> findBookByName(string name);
 	Book findBookById(int id, bool &found);
 
 private:

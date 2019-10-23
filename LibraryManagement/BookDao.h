@@ -18,7 +18,7 @@ public:
 	bool updateBook(int id, const Book &book);
 	bool deleteBook(int id);
 	Book findBookById(int id, bool &found);
-	vector<Book> findBookByName(const string &name, bool &found);
+	vector<Book> findBookByName(const string &name);
 	vector<Book> findAllBook();
 
 private:
