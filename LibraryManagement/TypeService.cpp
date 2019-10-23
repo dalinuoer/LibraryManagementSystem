@@ -1,7 +1,7 @@
 #include "TypeService.h"
 
 
-TypeService::TypeService()
+TypeService::TypeService() : typeDao("data/Type.dat")
 {
 }
 

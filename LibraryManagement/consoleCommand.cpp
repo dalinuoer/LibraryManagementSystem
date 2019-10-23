@@ -466,7 +466,8 @@ void renewBook()
 	cout << "ÇëÊäÈëÊé¼®ID£º";
 	cin >> bookId;
 
-	Record record = recordService.findRecordByUserIdAndBookId(userId, bookId);
+	bool found;
+	Record record = recordService.findRecordByUserIdAndBookId(userId, bookId, found);
 	printRecord(record);
 
 	if (recordService.renewBook(record.getId(), record.getDuration()))

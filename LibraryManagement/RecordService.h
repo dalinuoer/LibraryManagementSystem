@@ -9,21 +9,21 @@
 #include "RecordDao.h"
 #include <vector>
 
-using namespace std;
-
 class RecordService {
-public:	
-	
+public:		
+	RecordService();
 	int borrowBook(int userId, int AbookId);
 	int renewBook(int recordId, int duration);
-	int returnBook(int recordId);
+	bool returnBook(int recordId);
+	bool returnBook(int userid, int bookid);
+	Record findRecordByUserIdAndBookId(int userid,int bookid,bool &found);
 	vector<Record>findAllRecord();
 	vector<Record>findRecordByBookId(int bookId);
 	vector<Record>findRecordByUserId(int userId);
 
 private:
 	BookDao bookDao;
-	UserDao userDao;
 	ABookDao aBookDao;
+	UserDao userDao;
 	RecordDao recordDao;
 };

@@ -105,6 +105,7 @@ public:
 	{
 		vector<T> dataList;
 		file.open(filename, ios::binary | ios::in);
+		file.seekg(ios::beg);
 		while (!file.eof())
 		{
 			T data;
