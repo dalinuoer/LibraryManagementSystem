@@ -154,6 +154,7 @@
     <ClInclude Include="BookService.h" />
     <ClInclude Include="BookType.h" />
     <ClInclude Include="ConsoleCommand.h" />
+    <ClInclude Include="DataBase.hpp" />
     <ClInclude Include="Record.h" />
     <ClInclude Include="RecordDao.h" />
     <ClInclude Include="RecordService.h" />

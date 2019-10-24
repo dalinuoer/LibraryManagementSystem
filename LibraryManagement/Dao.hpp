@@ -12,14 +12,14 @@ class Dao
 public:
 	Dao(const string &filename) : filename(filename)
 	{
-		dataFile.open(filename, ios::in);
-		if (!dataFile)
+		file.open(filename, ios::in);
+		if (!file)
 		{
-			dataFile.close();
-			dataFile.open(filename, ios::out);
-			dataFile.close();
+			file.close();
+			file.open(filename, ios::out);
+			file.close();
 		}
-		dataFile.close();
+		file.close();
 	}
 
 	~Dao() 
@@ -28,13 +28,13 @@ public:
 
 	bool insert(const T &data)
 	{
-		dataFile.open(filename, ios::binary | ios::out | ios::app);
-		if (!dataFile)
+		file.open(filename, ios::binary | ios::out | ios::app);
+		if (!file)
 		{
 			cout << "打开文件失败" << endl;
 		}
-		dataFile.write((char*)&data, sizeof(T));
-		dataFile.close();
+		file.write((char*)&data, sizeof(T));
+		file.close();
 		return true;
 	}
 
@@ -48,15 +48,15 @@ public:
 		int pos = findPosition(id);
 		if (pos != -1)
 		{
-			dataFile.open(filename, ios::binary | ios::out | ios::in);
-			if (!dataFile)
+			file.open(filename, ios::binary | ios::out | ios::in);
+			if (!file)
 			{
 				cout << "文件打开失败" << endl;
 				exit(0);
 			}
-			dataFile.seekp(pos, ios::beg);
-			dataFile.write((char*)&data, sizeof(T));
-			dataFile.close();
+			file.seekp(pos, ios::beg);
+			file.write((char*)&data, sizeof(T));
+			file.close();
 			return true;
 		}
 		else
@@ -68,12 +68,12 @@ public:
 	int findPosition(int id)
 	{
 		T data;
-		dataFile.open(filename, ios::binary | ios::in);
-		dataFile.seekg(ios::beg);
+		file.open(filename, ios::binary | ios::in);
+		file.seekg(ios::beg);
 		bool found = false;
-		while (!dataFile.eof())
+		while (!file.eof())
 		{
-			dataFile.read((char*)&data, sizeof(T));
+			file.read((char*)&data, sizeof(T));
 			if (data.getId() == id)
 			{
 				found = true;
@@ -83,13 +83,13 @@ public:
 		int pos = 0;
 		if (found)
 		{
-			pos = dataFile.tellg() - (long long)sizeof(T);
+			pos = file.tellg() - (long long)sizeof(T);
 		}
 		else
 		{
 			pos = -1;
 		}
-		dataFile.close();
+		file.close();
 		return pos;
 	}
 
@@ -100,10 +100,10 @@ public:
 		if (pos != -1)
 		{
 			found = true;
-			dataFile.open(filename, ios::binary | ios::in);
-			dataFile.seekg(pos, ios::beg);
-			dataFile.read((char*)&data, sizeof(T));
-			dataFile.close();
+			file.open(filename, ios::binary | ios::in);
+			file.seekg(pos, ios::beg);
+			file.read((char*)&data, sizeof(T));
+			file.close();
 		}
 		else
 		{
@@ -115,24 +115,22 @@ public:
 	vector<T> findAll()
 	{
 		vector<T> dataList;
-		dataFile.open(filename, ios::binary | ios::in);
-		dataFile.seekg(ios::beg);
-		while (!dataFile.eof())
+		file.open(filename, ios::binary | ios::in);
+		file.seekg(ios::beg);
+		while (!file.eof())
 		{
 			T data;
-			dataFile.read((char*)&data, sizeof(T));
-			if (dataFile.gcount() != 0)
+			file.read((char*)&data, sizeof(T));
+			if (file.gcount() != 0)
 			{
 				dataList.push_back(data);
 			}
 		}
-		dataFile.close();
+		file.close();
 		return dataList;
 	}
 
 private:
-	string filename_data;
-	string filename_DB;
-	fstream dataFile;
-	fstream DBFile;
+	string filename;
+	fstream file;
 };

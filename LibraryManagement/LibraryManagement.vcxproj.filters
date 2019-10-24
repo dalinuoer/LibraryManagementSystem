@@ -78,6 +78,9 @@
     <ClInclude Include="TypeService.h">
       <Filter>头文件\service</Filter>
     </ClInclude>
+    <ClInclude Include="DataBase.hpp">
+      <Filter>头文件\dao</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ABook.cpp">
