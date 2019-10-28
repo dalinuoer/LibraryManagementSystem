@@ -18,9 +18,9 @@ public:
 	bool returnBook(int recordId);
 	bool returnBook(int userid, int bookid);
 	Record findRecordByUserIdAndBookId(int userid,int bookid,bool &found);
-	vector<Record>findAllRecord();
-	vector<Record>findRecordByBookId(int bookId);
-	vector<Record>findRecordByUserId(int userId);
+	vector<Record> findAllRecord();
+	vector<Record> findRecordByBookId(int bookId);
+	vector<Record> findRecordByUserId(int userId);
 
 private:
 	BookDao bookDao;
