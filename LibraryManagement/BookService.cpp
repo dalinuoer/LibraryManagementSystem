@@ -12,12 +12,30 @@ bool BookService::addBook(Book book)
 
 bool BookService::changeBookInfo(int id, const Book& book)
 {
-	return bookDao.updateBook(id, book);
+	bool found;
+	bookDao.findBookById(id, found);
+	if (found)
+	{
+		return bookDao.updateBook(id, book);
+	}
+	else
+	{
+		return false;
+	}
 }
 
 bool BookService::delBook(int id)
 {
-	return bookDao.deleteBook(id);
+	bool found;
+	bookDao.findBookById(id, found);
+	if (found) 
+	{
+		return bookDao.deleteBook(id);
+	}
+	else
+	{
+		return false;
+	}
 }
 
 vector<Book> BookService::findAllBook()

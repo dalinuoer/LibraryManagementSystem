@@ -9,7 +9,18 @@ UserService::UserService() :userDao("data/User.dat")
 
 bool UserService::addUser(const User &user)
 {
-	return userDao.insertUser(user);
+	bool found;
+	int id = user.getId();
+	userDao.findUserById(id,found);
+	if (found) 
+	{
+		return false;
+	}
+	else
+	{
+		return userDao.insertUser(user);
+	}
+
 }
 
 bool UserService::delUser(int id)
@@ -33,7 +44,16 @@ vector<User> UserService::findAllUser()
 
 int UserService::changeUserInfo(int userid, const User &user)
 {
-	return userDao.updateUser(userid, user);
+	bool found;
+	userDao.findUserById(userid, found);
+	if (found)
+	{
+		return userDao.updateUser(userid,user);
+	}
+	else
+	{
+		return false;
+	}
 }
 
 User UserService::findUserById(int id, bool &found)

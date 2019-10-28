@@ -21,7 +21,7 @@ void printMenu()
 
 void printFunction(int num)
 {
-	if (num == 1)	// user
+	if (num == 1) // user
 	{
 		cout << "1-添加用户" << endl;
 		cout << "2-删除用户" << endl;
@@ -29,14 +29,14 @@ void printFunction(int num)
 		cout << "4-查询用户信息" << endl;
 		cout << "5-查询所有用户信息" << endl;
 	}
-	else if (num == 2)	// book
+	else if (num == 2) // book
 	{
 		cout << "1-增加图书" << endl;
 		cout << "2-删除图书" << endl;
 		cout << "3-修改图书信息" << endl;
 		cout << "4-查询图书信息" << endl;
 	}
-	else if (num == 3)	// borrow and return
+	else if (num == 3) // borrow and return
 	{
 		cout << "1-借阅图书" << endl;
 		cout << "2-归还图书" << endl;
@@ -57,7 +57,7 @@ void addUser()
 	int id;
 	string name;
 	int type;
-	
+
 	cout << "";
 	cout << "请输入要添加的用户的姓名：";
 	cin >> name;
@@ -89,7 +89,7 @@ void deleteUser()
 	int id;
 	cout << "请输入要被删除的用户的ID：";
 	cin >> id;
-	
+
 	if (userService.delUser(id))
 	{
 		cout << "删除用户成功！" << endl;
@@ -127,7 +127,6 @@ void modifyUserInfo()
 		user.setType(User::TEACHER);
 	}
 
-	
 	if (userService.changeUserInfo(id, user))
 	{
 		cout << "修改用户信息成功！" << endl;
@@ -192,7 +191,7 @@ void findUserByName()
 
 	User user;
 	bool found;
-	user = userService.findUserByName(name, found);//暂时假定用户名不重，根据用户名查询到有且仅有一个用户，若用户不存在则打印用户不存在
+	user = userService.findUserByName(name, found); //暂时假定用户名不重，根据用户名查询到有且仅有一个用户，若用户不存在则打印用户不存在
 	if (!found)
 	{
 		cout << "此用户不存在！" << endl;
@@ -224,16 +223,16 @@ void findAllUser()
 {
 	vector<User> users = userService.findAllUser();
 	vector<User>::iterator it = users.begin();
-	while (it != users.end()) 
+	while (it != users.end())
 	{
 		printUserInfo(*it);
 		it++;
 	}
-	
-	cout << "查询成功"<< endl;
+
+	cout << "查询成功" << endl;
 }
 
-void addBook()//增加一类书
+void addBook() //增加一类书
 {
 	Book book;
 
@@ -252,12 +251,12 @@ void addBook()//增加一类书
 	cout << "请输入书籍的作者：";
 	cin >> author;
 	book.setAuthor(author);
-	
+
 	typeService.findAllType();
 	cout << "请输入书籍类型前面的数字代码：";
 	cin >> typeId;
 	book.setTypeId(typeId);
-	
+
 	cout << "请输入书籍的出版社：";
 	cin >> publisher;
 	book.setPublisher(publisher);
@@ -275,7 +274,7 @@ void addBook()//增加一类书
 	book.setQuantity(quantity);
 
 	book.setStatus(Book::NORMAL);
-	
+
 	if (bookService.addBook(book))
 	{
 		cout << "增加书籍成功！" << endl;
@@ -291,7 +290,7 @@ void delBook()
 	int id;
 	cout << "请输入要删除书籍的ID：";
 	cin >> id;
-	
+
 	if (bookService.delBook(id))
 	{
 		cout << "删除书籍成功！" << endl;
@@ -325,12 +324,12 @@ void modifyBookInfo()
 	cout << "请输入书籍的作者：";
 	cin >> author;
 	book.setAuthor(author);
-	
+
 	typeService.findAllType();
 	cout << "请输入书籍类型前面的数字代码：";
 	cin >> typeId;
 	book.setTypeId(typeId);
-	
+
 	cout << "请输入书籍的出版社：";
 	cin >> publisher;
 	book.setPublisher(publisher);
@@ -402,7 +401,6 @@ void findAllBook()
 	cout << "查询所有书籍信息成功！" << endl;
 }
 
-
 void borrowBook()
 {
 	int userId;
@@ -442,7 +440,6 @@ void returnBook()
 		cout << "还书失败！" << endl;
 	}
 }
-
 
 void printRecord(RecordVo record)
 {
@@ -495,6 +492,29 @@ void renewBook()
 	}
 }
 
+void renewBook()
+{
+	int userId;
+	cout << "请输入用户ID：";
+	cin >> userId;
+
+	int bookId;
+	cout << "请输入书籍ID：";
+	cin >> bookId;
+
+	bool found;
+	Record record = recordService.findRecordByUserIdAndBookId(userId, bookId, found);
+	printRecord(record);
+
+	if (recordService.renewBook(record.getId(), record.getDuration()))
+	{
+		cout << "续借成功！" << endl;
+	}
+	else
+	{
+		cout << "续借失败！" << endl;
+	}
+}
 
 void findAllRecord()
 {
