@@ -58,9 +58,5 @@ void User::setDelete()
 
 bool User::isDelete()
 {
-	if (this->status = DELETED)
-	{
-		return true;
-	}
-	return false;
+	return this->status == UserStatus::DELETED;
 }

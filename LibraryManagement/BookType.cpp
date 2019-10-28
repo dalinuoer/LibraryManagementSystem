@@ -38,9 +38,5 @@ void BookType::setDelete()
 
 bool BookType::isDelete()
 {
-	if (this->status = DELETED)
-	{
-		return true;
-	}
-	return false;
+	return this->status == BookTypeStatus::DELETED;
 }
