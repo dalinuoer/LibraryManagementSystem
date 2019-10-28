@@ -28,12 +28,32 @@ public:
 
 	bool insert(const T &data)
 	{
+		//获取当前最新id
+		file.open(filename, ios::binary | ios::in);
+		int id = 0;
+		file.read((char*)&id, sizeof(int));
+		if (file.gcount() == 0)
+		{
+			id = 0;
+		}
+		else
+		{
+			id = id + 1;  //将id加一作为新加入项目的id
+		}
+		file.close();
+		//将新id写入文件头
+		file.open(filename, ios::binary | ios::out | ios::in);
+		file.seekp(ios::beg);
+		file.write((char*)&id, sizeof(int));
+		file.close();
+		//插入新项目
 		file.open(filename, ios::binary | ios::out | ios::app);
 		if (!file)
 		{
 			cout << "打开文件失败" << endl;
 		}
-		file.write((char*)&data, sizeof(T));
+		file.write((char*)&id, sizeof(int));
+		file.write((char*)&data + 4, sizeof(T) - sizeof(int));
 		file.close();
 		return true;
 	}
@@ -69,7 +89,7 @@ public:
 	{
 		T data;
 		file.open(filename, ios::binary | ios::in);
-		file.seekg(ios::beg);
+		file.seekg(sizeof(int), ios::beg);
 		bool found = false;
 		while (!file.eof())
 		{
@@ -116,7 +136,7 @@ public:
 	{
 		vector<T> dataList;
 		file.open(filename, ios::binary | ios::in);
-		file.seekg(ios::beg);
+		file.seekg(sizeof(int), ios::beg);
 		while (!file.eof())
 		{
 			T data;

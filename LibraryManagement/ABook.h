@@ -4,7 +4,7 @@ class ABook
 public:
 	static enum ABookStatus
 	{
-		NORMAL,
+		NORMAL = 0,
 		DELETED,
 		BORROWED,
 	};

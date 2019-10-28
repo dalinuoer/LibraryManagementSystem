@@ -33,7 +33,7 @@ vector<Book> BookDao::findBookByName(const string &name)
 {
 	vector<Book> bookList;
 	file.open(filename, ios::binary | ios::in);
-	file.seekg(ios::beg);
+	file.seekg(sizeof(int), ios::beg);
 	while (!file.eof())
 	{
 		Book data;

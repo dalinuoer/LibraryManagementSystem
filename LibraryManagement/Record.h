@@ -8,7 +8,7 @@ class Record
 public:
 	static enum RecordStatus
 	{
-		NORMAL,
+		NORMAL = 0,
 		EXCEED,
 		RETURNED,
 		DELETED,

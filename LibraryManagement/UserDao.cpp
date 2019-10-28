@@ -37,7 +37,7 @@ User UserDao::findUserByName(const string &name, bool &found)
 {
 	User data;
 	file.open(filename, ios::binary | ios::in);
-	file.seekg(ios::beg);
+	file.seekg(sizeof(int), ios::beg);
 	found = false;
 	while (!file.eof())
 	{
