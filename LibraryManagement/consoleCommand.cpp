@@ -64,7 +64,7 @@ void addUser()
 	{
 		user.setType(User::TEACHER);
 	}
-	
+	user.setStatus(User::NORMAL);
 	if (userService.addUser(user))
 	{
 		cout << "添加用户成功！" << endl;
@@ -360,6 +360,7 @@ void modifyBookInfo()
 		cout << "修改书籍信息失败！" << endl;
 	}
 }
+
 void printBookInfo(Book book)
 {
 	bool found;
