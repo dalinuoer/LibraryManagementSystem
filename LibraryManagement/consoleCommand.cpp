@@ -443,38 +443,6 @@ void returnBook()
 
 void printRecord(Record record)
 {
-	cout << "书籍ID:" << record.getBookId() << endl;
-	cout << "用户ID:" << record.getUserId() << endl;
-	cout << "借书时间:" << record.getDate() << endl;
-	cout << "借书时长:" << record.getDuration() << endl;
-}
-
-void renewBook()
-{
-	int userId;
-	cout << "请输入用户ID：";
-	cin >> userId;
-
-	int bookId;
-	cout << "请输入书籍ID：";
-	cin >> bookId;
-
-	bool found;
-	Record record = recordService.findRecordByUserIdAndBookId(userId, bookId, found);
-	printRecord(record);
-
-	if (recordService.renewBook(record.getId(), record.getDuration()))
-	{
-		cout << "续借成功！" << endl;
-	}
-	else
-	{
-		cout << "续借失败！" << endl;
-	}
-}
-
-void printRecord(Record record)
-{
 	bool userIsFound;
 	User user = userService.findUserById(record.getUserId(), userIsFound);
 
@@ -506,6 +474,30 @@ void printRecord(Record record)
 		{
 			cout << "已还" << endl;
 		}
+	}
+}
+
+void renewBook()
+{
+	int userId;
+	cout << "请输入用户ID：";
+	cin >> userId;
+
+	int bookId;
+	cout << "请输入书籍ID：";
+	cin >> bookId;
+
+	bool found;
+	Record record = recordService.findRecordByUserIdAndBookId(userId, bookId, found);
+	printRecord(record);
+
+	if (recordService.renewBook(record.getId(), record.getDuration()))
+	{
+		cout << "续借成功！" << endl;
+	}
+	else
+	{
+		cout << "续借失败！" << endl;
 	}
 }
 
