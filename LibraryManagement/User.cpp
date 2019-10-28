@@ -11,7 +11,7 @@ User::~User()
 {
 }
 
-int User::getId()
+int User::getId() const
 {
 	return this->id;
 }

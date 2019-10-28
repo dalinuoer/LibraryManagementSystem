@@ -21,7 +21,7 @@ public:
 public:
 	User();
 	~User();
-	int getId();
+	int getId() const;
 	void setId(const int id);
 	string getName();
 	void setName(const string &name);
