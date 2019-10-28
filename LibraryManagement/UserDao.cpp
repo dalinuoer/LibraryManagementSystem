@@ -13,6 +13,11 @@ UserDao::~UserDao()
 
 bool UserDao::insertUser(const User &user)
 {
+	int id = 0;
+	file.open(filename, ios::binary | ios::out | ios::in);
+	file.seekp(ios::beg);
+	file.write((char*)&id, sizeof(int));
+	file.close();
 	file.open(filename, ios::binary | ios::out | ios::app);
 	if (!file)
 	{

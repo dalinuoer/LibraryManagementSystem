@@ -8,7 +8,7 @@
 #include "Record.h"
 #include "RecordDao.h"
 #include <vector>
-
+#include"RecordVo.h"
 class RecordService {
 public:		
 	RecordService();
@@ -17,11 +17,11 @@ public:
 	int renewBook(int recordId, int duration);
 	bool returnBook(int recordId);
 	bool returnBook(int userid, int bookid);
-	Record findRecordByUserIdAndBookId(int userid,int bookid,bool &found);
-	vector<Record> findAllRecord();
-	vector<Record> findRecordByBookId(int bookId);
-	vector<Record> findRecordByUserId(int userId);
-
+	RecordVo findRecordByUserIdAndBookId(int userid,int bookid,bool &found);
+	vector<RecordVo>findAllRecord();
+	vector<RecordVo>findRecordByBookId(int bookId);
+	vector<RecordVo>findRecordByUserId(int userId);
+	
 private:
 	BookDao bookDao;
 	ABookDao aBookDao;

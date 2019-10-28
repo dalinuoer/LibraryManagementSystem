@@ -54,9 +54,11 @@ void addUser()
 {
 	User user;
 
+	int id;
 	string name;
 	int type;
-
+	
+	cout << "";
 	cout << "请输入要添加的用户的姓名：";
 	cin >> name;
 	user.setName(name);
@@ -441,12 +443,32 @@ void returnBook()
 	}
 }
 
-void printRecord(Record record)
+
+void printRecord(RecordVo record)
 {
-	cout << "书籍ID:" << record.getBookId() << endl;
-	cout << "用户ID:" << record.getUserId() << endl;
-	cout << "借书时间:" << record.getDate() << endl;
-	cout << "借书时长:" << record.getDuration() << endl;
+	cout << "借阅记录编号：" << record.getRecordId() << endl;
+	cout << "借阅人：" << record.getUserName() << endl;
+	cout << "书名：" << record.getBookName() << endl;
+	cout << "借书时间：" << record.getDate() << endl;
+	cout << "借书时长：" << record.getDuration() << "天" << endl;
+	cout << "还书时间：" << record.getReturnDate() << endl;
+	cout << "状态：";
+	if (record.getStatus() == Record::NORMAL)
+	{
+		cout << "借阅中" << endl;
+	}
+	else if (record.getStatus() == Record::EXCEED)
+	{
+		cout << "超期" << endl;
+	}
+	else if (record.getStatus() == Record::DELETED)
+	{
+		cout << "已被删除" << endl;
+	}
+	else if (record.getStatus() == Record::RETURNED)
+	{
+		cout << "已还" << endl;
+	}
 }
 
 void renewBook()
@@ -460,10 +482,10 @@ void renewBook()
 	cin >> bookId;
 
 	bool found;
-	Record record = recordService.findRecordByUserIdAndBookId(userId, bookId, found);
+	RecordVo record = recordService.findRecordByUserIdAndBookId(userId, bookId, found);
 	printRecord(record);
 
-	if (recordService.renewBook(record.getId(), record.getDuration()))
+	if (recordService.renewBook(record.getRecordId(), record.getDuration()))
 	{
 		cout << "续借成功！" << endl;
 	}
@@ -473,45 +495,10 @@ void renewBook()
 	}
 }
 
-void printRecord(Record record)
-{
-	bool userIsFound;
-	User user = userService.findUserById(record.getUserId(), userIsFound);
-
-	bool bookIsFound;
-	Book book = bookService.findBookById(record.getBookId(), bookIsFound);
-
-	if (userIsFound && bookIsFound)
-	{
-		cout << "借阅记录编号：" << record.getId() << endl;
-		cout << "借阅人：" << user.getName() << endl;
-		cout << "书名：" << book.getName() << endl;
-		cout << "借书时间：" << record.getDate() << endl;
-		cout << "借书时长：" << record.getDuration() << "天" << endl;
-		cout << "还书时间：" << record.getReturnDate() << endl;
-		cout << "状态：";
-		if (record.getStatus() == Record::NORMAL)
-		{
-			cout << "借阅中" << endl;
-		}
-		else if (record.getStatus() == Record::EXCEED)
-		{
-			cout << "超期" << endl;
-		}
-		else if (record.getStatus() == Record::DELETED)
-		{
-			cout << "已被删除" << endl;
-		}
-		else if (record.getStatus() == Record::RETURNED)
-		{
-			cout << "已还" << endl;
-		}
-	}
-}
 
 void findAllRecord()
 {
-	vector<Record> records = recordService.findAllRecord();
+	vector<RecordVo> records = recordService.findAllRecord();
 	for (int i = 0; i < records.size(); ++i)
 	{
 		printRecord(records[i]);

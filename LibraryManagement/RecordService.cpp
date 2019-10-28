@@ -60,6 +60,7 @@ int RecordService::borrowBook(int userId, int AbookId)
 	}
 
 	return -5;														//ÆäËû´íÎóÇé¿öµ¼ÖÂÉèÖÃÊ§°Ü -5
+
 }
 
 int RecordService::renewBook(int recordId, int duration)
@@ -109,7 +110,7 @@ bool  RecordService::returnBook(int recordId)
 bool RecordService::returnBook(int userid, int bookid)
 {
 	bool found;
-	Record record = findRecordByUserIdAndBookId(userid, bookid, found);
+	Record record = recordDao.findRecordByUserIdAndBookId(userid, bookid, found);
 
 	ABook abook = aBookDao.findABookById(record.getABookId(), found);
 	abook.setStatus(ABook::NORMAL);
@@ -121,22 +122,121 @@ bool RecordService::returnBook(int userid, int bookid)
 	return true;
 }
 
-Record RecordService::findRecordByUserIdAndBookId(int userid, int bookid, bool &found)
+RecordVo RecordService::findRecordByUserIdAndBookId(int userid, int bookid, bool &found)
 {
-	return recordDao.findRecordByUserIdAndBookId(userid, bookid, found);
+	Record record = recordDao.findRecordByUserIdAndBookId(userid, bookid, found);
+	Book book = bookDao.findBookById(bookid,found);
+	User user = userDao.findUserById(userid, found);
+	RecordVo vo;
+	vo.setUserId(userid);
+	vo.setBookId(bookid);
+	//RecordVo record×Ö¶Î
+	vo.setRecordId(record.getId());			
+	vo.setABookId(record.getBookId());
+	vo.setBookId(record.getABookId());
+	vo.setDate(record.getDate());
+	vo.setDuration(record.getDuration());
+	vo.setReturnDate(record.getReturnDate());
+	vo.setStatus(record.getStatus());
+	//RecordVo user×Ö¶Î
+	vo.setUserName(user.getName());
+	//RecordVo book×Ö¶Î
+	vo.setAuthor(book.getAuthor());
+	vo.setPublisher(book.getPublisher());
+
+	return vo;
+
 }
 
-vector<Record> RecordService::findAllRecord()
+vector<RecordVo> RecordService::findAllRecord()
 {
-	return recordDao.findAllRecord();
+	vector<Record> list = recordDao.findAllRecord();
+	vector<RecordVo> voList;
+	for (auto record : list)
+	{
+		bool found;
+		Book book = bookDao.findBookById(record.getBookId(), found);
+		User user = userDao.findUserById(record.getUserId(), found);
+		RecordVo vo;
+		vo.setUserId(record.getUserId());
+		vo.setBookId(record.getBookId());
+		//RecordVo record×Ö¶Î
+		vo.setRecordId(record.getId());
+		vo.setABookId(record.getBookId());
+		vo.setBookId(record.getABookId());
+		vo.setDate(record.getDate());
+		vo.setDuration(record.getDuration());
+		vo.setReturnDate(record.getReturnDate());
+		vo.setStatus(record.getStatus());
+		//RecordVo user×Ö¶Î
+		vo.setUserName(user.getName());
+		//RecordVo book×Ö¶Î
+		vo.setAuthor(book.getAuthor());
+		vo.setPublisher(book.getPublisher());
+
+		voList.push_back(vo);
+	}
+	return voList;
 }
 
-vector<Record> RecordService::findRecordByBookId(int bookId)
+vector<RecordVo> RecordService::findRecordByBookId(int bookId)
 {
-	return recordDao.findRecordByBookId(bookId);
+	vector<Record> list = recordDao.findRecordByBookId(bookId);
+	vector<RecordVo> voList;
+	for (auto record : list)
+	{
+		bool found;
+		Book book = bookDao.findBookById(record.getBookId(), found);
+		User user = userDao.findUserById(record.getUserId(), found);
+		RecordVo vo;
+		vo.setUserId(record.getUserId());
+		vo.setBookId(record.getBookId());
+		//RecordVo record×Ö¶Î
+		vo.setRecordId(record.getId());
+		vo.setABookId(record.getBookId());
+		vo.setBookId(record.getABookId());
+		vo.setDate(record.getDate());
+		vo.setDuration(record.getDuration());
+		vo.setReturnDate(record.getReturnDate());
+		vo.setStatus(record.getStatus());
+		//RecordVo user×Ö¶Î
+		vo.setUserName(user.getName());
+		//RecordVo book×Ö¶Î
+		vo.setAuthor(book.getAuthor());
+		vo.setPublisher(book.getPublisher());
+
+		voList.push_back(vo);
+	}
+	return voList;
 }
 
-vector<Record> RecordService::findRecordByUserId(int userId)
+vector<RecordVo> RecordService::findRecordByUserId(int userId)
 {
-	return recordDao.findRecordByUserId(userId);
+	vector<Record> list =  recordDao.findRecordByUserId(userId);
+	vector<RecordVo> voList;
+	for (auto record : list)
+	{
+		bool found;
+		Book book = bookDao.findBookById(record.getBookId(), found);
+		User user = userDao.findUserById(record.getUserId(), found);
+		RecordVo vo;
+		vo.setUserId(record.getUserId());
+		vo.setBookId(record.getBookId());
+		//RecordVo record×Ö¶Î
+		vo.setRecordId(record.getId());
+		vo.setABookId(record.getBookId());
+		vo.setBookId(record.getABookId());
+		vo.setDate(record.getDate());
+		vo.setDuration(record.getDuration());
+		vo.setReturnDate(record.getReturnDate());
+		vo.setStatus(record.getStatus());
+		//RecordVo user×Ö¶Î
+		vo.setUserName(user.getName());
+		//RecordVo book×Ö¶Î
+		vo.setAuthor(book.getAuthor());
+		vo.setPublisher(book.getPublisher());
+
+		voList.push_back(vo);
+	}
+	return voList;
 }
