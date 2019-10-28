@@ -13,7 +13,14 @@ UserDao::~UserDao()
 
 bool UserDao::insertUser(const User &user)
 {
-	return dao.insert(user);
+	file.open(filename, ios::binary | ios::out | ios::app);
+	if (!file)
+	{
+		cout << "打开文件失败" << endl;
+	}
+	file.write((char*)&user, sizeof(User));
+	file.close();
+	return true;
 }
 
 bool UserDao::updateUser(int id, const User &user)

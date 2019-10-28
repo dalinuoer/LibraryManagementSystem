@@ -109,9 +109,5 @@ void Book::setDelete()
 
 bool Book::isDelete()
 {
-	if (this->status = DELETED)
-	{
-		return true;
-	}
-	return false;
+	return this->status == BookStatus::DELETED;
 }

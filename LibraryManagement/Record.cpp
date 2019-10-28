@@ -98,9 +98,5 @@ void Record::setDelete()
 
 bool Record::isDelete()
 {
-	if (this->status = DELETED)
-	{
-		return true;
-	}
-	return false;
+	return this->status == RecordStatus::DELETED;
 }

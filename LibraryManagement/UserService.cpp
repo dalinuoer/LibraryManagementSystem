@@ -3,18 +3,27 @@
 #include "UserDao.h"
 
 
-UserService::UserService():userDao("data/User.dat")
+UserService::UserService() :userDao("data/User.dat")
 {
 }
 
 bool UserService::addUser(const User &user)
-{	
+{
 	return userDao.insertUser(user);
 }
 
 bool UserService::delUser(int id)
 {
-	return userDao.deleteUser(id);
+	bool found;
+	userDao.findUserById(id, found);
+	if (found)
+	{
+		return userDao.deleteUser(id);
+	}
+	else
+	{
+		return false;
+	}
 }
 
 vector<User> UserService::findAllUser()
@@ -36,7 +45,3 @@ User UserService::findUserByName(string username, bool &found)
 {
 	return userDao.findUserByName(username, found);
 }
-
-
-
-

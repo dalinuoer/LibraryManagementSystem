@@ -60,7 +60,6 @@ int RecordService::borrowBook(int userId, int AbookId)
 	}
 
 	return -5;														//其他错误情况导致设置失败 -5
-
 }
 
 int RecordService::renewBook(int recordId, int duration)
