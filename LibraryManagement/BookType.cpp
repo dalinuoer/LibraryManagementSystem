@@ -30,3 +30,17 @@ void BookType::setName(const string &name)
 {
 	strcpy(this->name, name.c_str());
 }
+
+void BookType::setDelete()
+{
+	this->status = DELETED;
+}
+
+bool BookType::isDelete()
+{
+	if (this->status = DELETED)
+	{
+		return true;
+	}
+	return false;
+}

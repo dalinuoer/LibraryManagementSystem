@@ -39,3 +39,17 @@ void ABook::setStatus(const ABook::ABookStatus status)
 {
 	this->status = status;
 }
+
+void ABook::setDelete()
+{
+	this->status = DELETED;
+}
+
+bool ABook::isDelete() 
+{
+	if (this->status = DELETED) 
+	{
+		return true;
+	}
+	return false;
+}

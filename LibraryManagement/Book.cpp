@@ -101,3 +101,17 @@ void Book::setStatus(const Book::BookStatus status)
 {
 	this->status = status;
 }
+
+void Book::setDelete()
+{
+	this->status = DELETED;
+}
+
+bool Book::isDelete()
+{
+	if (this->status = DELETED)
+	{
+		return true;
+	}
+	return false;
+}

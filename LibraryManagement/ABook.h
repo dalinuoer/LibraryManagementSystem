@@ -18,6 +18,8 @@ public:
 	void setBookId(const int bookId);
 	ABookStatus getStatus();
 	void setStatus(const ABookStatus status);
+	void setDelete();
+	bool isDelete();
 
 private:
 	int id;

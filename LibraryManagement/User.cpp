@@ -50,3 +50,17 @@ void User::setStatus(const User::UserStatus status)
 {
 	this->status = status;
 }
+
+void User::setDelete()
+{
+	this->status = DELETED;
+}
+
+bool User::isDelete()
+{
+	if (this->status = DELETED)
+	{
+		return true;
+	}
+	return false;
+}

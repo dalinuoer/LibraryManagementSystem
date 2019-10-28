@@ -11,6 +11,7 @@ public:
 		NORMAL,
 		EXCEED,
 		RETURNED,
+		DELETED,
 	};
 
 public:
@@ -32,6 +33,8 @@ public:
 	void setReturnDate(const string &returnDate);
 	RecordStatus getStatus();
 	void setStatus(const RecordStatus status);
+	void setDelete();
+	bool isDelete();
 
 private:
 	int id;

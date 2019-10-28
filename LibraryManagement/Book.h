@@ -33,6 +33,8 @@ public:
 	void setQuantity(const int quantity);
 	BookStatus getStatus();
 	void setStatus(const BookStatus status);
+	void setDelete();
+	bool isDelete();
 
 private:
 	int id;

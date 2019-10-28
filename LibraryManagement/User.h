@@ -29,6 +29,8 @@ public:
 	void setType(const UserType type);
 	UserStatus getStatus();
 	void setStatus(const UserStatus status);
+	void setDelete();
+	bool isDelete();
 
 private:
 	int id;

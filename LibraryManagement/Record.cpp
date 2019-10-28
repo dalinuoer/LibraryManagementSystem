@@ -90,3 +90,17 @@ void Record::setStatus(const Record::RecordStatus status)
 {
 	this->status = status;
 }
+
+void Record::setDelete()
+{
+	this->status = DELETED;
+}
+
+bool Record::isDelete()
+{
+	if (this->status = DELETED)
+	{
+		return true;
+	}
+	return false;
+}
