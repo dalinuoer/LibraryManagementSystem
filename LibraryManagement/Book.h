@@ -8,7 +8,7 @@ class Book
 public:
 	static enum BookStatus
 	{
-		NORMAL,
+		NORMAL = 0,
 		DELETED,
 	};
 

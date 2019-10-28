@@ -40,6 +40,7 @@ vector<Record> RecordDao::findRecordByBookId(int bookId)
 {
 	vector<Record> dataList;
 	file.open(filename, ios::binary | ios::in);
+	file.seekg(sizeof(int), ios::beg);
 	while (!file.eof())
 	{
 		Record record;
@@ -60,6 +61,7 @@ vector<Record> RecordDao::findRecordByUserId(int userId)
 {
 	vector<Record> dataList;
 	file.open(filename, ios::binary | ios::in);
+	file.seekg(sizeof(int), ios::beg);
 	while (!file.eof())
 	{
 		Record record;
@@ -80,7 +82,7 @@ Record RecordDao::findRecordByUserIdAndBookId(int userId, int bookId, bool &foun
 {
 	Record data;
 	file.open(filename, ios::binary | ios::in);
-	file.seekg(ios::beg);
+	file.seekg(sizeof(int), ios::beg);
 	found = false;
 	while (!file.eof())
 	{

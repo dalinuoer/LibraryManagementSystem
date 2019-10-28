@@ -8,12 +8,12 @@ class User
 public:
 	static enum UserType
 	{
-		STUDENT,
+		STUDENT = 0,
 		TEACHER,
 	};
 	static enum UserStatus
 	{
-		NORMAL,
+		NORMAL = 0,
 		DELETED,
 		FULL,
 	};
