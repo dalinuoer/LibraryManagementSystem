@@ -15,6 +15,7 @@ void printMenu()
 	cout << "***********1-用户操作***********" << endl;
 	cout << "***********2-书籍操作***********" << endl;
 	cout << "**********3-借还书操作**********" << endl;
+	cout << "*********4-书籍类别操作*********" << endl;
 	cout << "***********0-退出系统***********" << endl;
 }
 
@@ -22,24 +23,30 @@ void printFunction(int num)
 {
 	if (num == 1)	// user
 	{
-		cout << "1-添加用户       " << endl;
-		cout << "2-删除用户       " << endl;
-		cout << "3-修改用户信息     " << endl;
-		cout << "4-查询用户信息     " << endl;
-		cout << "5-查询所有用户信息   " << endl;
+		cout << "1-添加用户" << endl;
+		cout << "2-删除用户" << endl;
+		cout << "3-修改用户信息" << endl;
+		cout << "4-查询用户信息" << endl;
+		cout << "5-查询所有用户信息" << endl;
 	}
 	else if (num == 2)	// book
 	{
-		cout << "1-增加图书       " << endl;
-		cout << "2-删除图书       " << endl;
-		cout << "3-修改图书信息     " << endl;
-		cout << "4-查询图书信息     " << endl;
+		cout << "1-增加图书" << endl;
+		cout << "2-删除图书" << endl;
+		cout << "3-修改图书信息" << endl;
+		cout << "4-查询图书信息" << endl;
 	}
 	else if (num == 3)	// borrow and return
 	{
-		cout << "1-借阅图书       " << endl;
-		cout << "2-归还图书       " << endl;
-		cout << "3-续借图书       " << endl;
+		cout << "1-借阅图书" << endl;
+		cout << "2-归还图书" << endl;
+		cout << "3-续借图书" << endl;
+		cout << "4-显示所有用户借阅记录" << endl;
+	}
+	else if (num == 4) // book type
+	{
+		cout << "1-增加书籍类型" << endl;
+		cout << "2-查询全部书籍类型" << endl;
 	}
 }
 
@@ -223,8 +230,6 @@ void findAllUser()
 	
 	cout << "查询成功"<< endl;
 }
-
-
 
 void addBook()//增加一类书
 {
@@ -438,10 +443,38 @@ void returnBook()
 
 void printRecord(Record record)
 {
-	cout << "书籍ID:" << record.getBookId() << endl;
-	cout << "用户ID:" << record.getUserId() << endl;
-	cout << "借书时间:" << record.getDate() << endl;
-	cout << "借书时长:" << record.getDuration() << endl;
+	bool userIsFound;
+	User user = userService.findUserById(record.getUserId(), userIsFound);
+
+	bool bookIsFound;
+	Book book = bookService.findBookById(record.getBookId(), bookIsFound);
+
+	if (userIsFound && bookIsFound)
+	{
+		cout << "借阅记录编号：" << record.getId() << endl;
+		cout << "借阅人：" << user.getName() << endl;
+		cout << "书名：" << book.getName() << endl;
+		cout << "借书时间：" << record.getDate() << endl;
+		cout << "借书时长：" << record.getDuration() << "天" << endl;
+		cout << "还书时间：" << record.getReturnDate() << endl;
+		cout << "状态：";
+		if (record.getStatus() == Record::NORMAL)
+		{
+			cout << "借阅中" << endl;
+		}
+		else if (record.getStatus() == Record::EXCEED)
+		{
+			cout << "超期" << endl;
+		}
+		else if (record.getStatus() == Record::DELETED)
+		{
+			cout << "已被删除" << endl;
+		}
+		else if (record.getStatus() == Record::RETURNED)
+		{
+			cout << "已还" << endl;
+		}
+	}
 }
 
 void renewBook()
@@ -468,9 +501,53 @@ void renewBook()
 	}
 }
 
+void findAllRecord()
+{
+	vector<Record> records = recordService.findAllRecord();
+	for (int i = 0; i < records.size(); ++i)
+	{
+		printRecord(records[i]);
+	}
+	cout << "查询所有用户借阅记录成功！" << endl;
+}
+
+void printBookTypeInfo(BookType bookType)
+{
+	cout << "图书类别代号：" << bookType.getId() << "  ";
+	cout << "图书类别：" << bookType.getName() << endl;
+}
+
+void addBookType()
+{
+	BookType bookType;
+	string newName;
+	cout << "请输入您要增加的新类别的名称：";
+	cin >> newName;
+	bookType.setName(newName);
+	if (typeService.insertType(bookType))
+	{
+		cout << "增加新类别成功！" << endl;
+	}
+	else
+	{
+		cout << "增加新类别失败！" << endl;
+	}
+}
+
+void findAllBookType()
+{
+	vector<BookType> bookTypes = typeService.findAllType();
+	for (int i = 0; i < bookTypes.size(); ++i)
+	{
+		printBookTypeInfo(bookTypes[i]);
+	}
+	cout << "查询所有图书类别成功" << endl;
+}
+
 void console()
 {
 	printMenu();
+
 	while (true)
 	{
 		cout << "请输入您要执行的操作编号：" << endl;
@@ -486,7 +563,7 @@ void console()
 		case 1:
 			printFunction(1);
 
-			cout << "请输入您要执行的操作编号：" << endl;
+			cout << "请输入您要执行的子操作编号：" << endl;
 			cin >> choice2;
 
 			switch (choice2)
@@ -514,7 +591,7 @@ void console()
 		case 2:
 			printFunction(2);
 
-			cout << "请输入您要执行的操作编号：" << endl;
+			cout << "请输入您要执行的子操作编号：" << endl;
 			cin >> choice2;
 
 			switch (choice2)
@@ -539,7 +616,7 @@ void console()
 		case 3:
 			printFunction(3);
 
-			cout << "请输入您要执行的操作编号：" << endl;
+			cout << "请输入您要执行的子操作编号：" << endl;
 			cin >> choice2;
 
 			switch (choice2)
@@ -552,6 +629,28 @@ void console()
 				break;
 			case 3:
 				renewBook();
+				break;
+			case 4:
+				findAllRecord();
+				break;
+			default:
+				cout << "您输入的数字有误，请检查后重新输入！" << endl;
+			}
+
+			break;
+		case 4:
+			printFunction(4);
+
+			cout << "请输入您要执行的子操作编号：" << endl;
+			cin >> choice2;
+
+			switch (choice2)
+			{
+			case 1:
+				addBookType();
+				break;
+			case 2:
+				findAllBookType();
 				break;
 			default:
 				cout << "您输入的数字有误，请检查后重新输入！" << endl;
