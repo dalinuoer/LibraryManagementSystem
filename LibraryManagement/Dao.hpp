@@ -53,7 +53,7 @@ public:
 			cout << "打开文件失败" << endl;
 		}
 		file.write((char*)&id, sizeof(int));
-		file.write((char*)&data + 4, sizeof(T) - sizeof(int));
+		file.write((char*)&data + sizeof(int), sizeof(T) - sizeof(int));
 		file.close();
 		return true;
 	}
