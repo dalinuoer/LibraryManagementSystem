@@ -60,7 +60,17 @@ public:
 
 	bool del(int id)
 	{
-		return true;
+		bool found;
+		T data = findById(id, found);
+		if (found)
+		{
+			data.setDelete();
+			return update(id, data);
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 	bool update(int id,const T &data)
