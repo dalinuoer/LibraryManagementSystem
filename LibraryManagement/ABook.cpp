@@ -47,9 +47,5 @@ void ABook::setDelete()
 
 bool ABook::isDelete() 
 {
-	if (this->status = DELETED) 
-	{
-		return true;
-	}
-	return false;
+	return this->status == ABookStatus::DELETED;
 }
