@@ -1,7 +1,10 @@
 #pragma once
-#include<string>
-#include"Record.h"
+#include <cstring>
+#include <string>
+#include "Record.h"
+
 using namespace std;
+
 class RecordVo : public Record
 {
 public:
