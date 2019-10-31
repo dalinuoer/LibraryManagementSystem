@@ -21,14 +21,14 @@ void Record::setId(const int id)
 	this->id = id;
 }
 
-int Record::getUserId()
+string Record::getUserId()
 {
-	return this->userId;
+	return string(this->userId);
 }
 
-void Record::setUserId(const int userId)
+void Record::setUserId(const string &userId)
 {
-	this->userId = userId;
+	strcpy(this->userId, userId.c_str());
 }
 
 int Record::getBookId()

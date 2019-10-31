@@ -54,7 +54,7 @@ void addUser()
 {
 	User user;
 
-	int id;
+	string id;
 	string name;
 	int type;
 
@@ -89,7 +89,7 @@ void addUser()
 
 void deleteUser()
 {
-	int id;
+	string id;
 	cout << "请输入要被删除的用户的ID：";
 	cin >> id;
 
@@ -105,7 +105,7 @@ void deleteUser()
 
 void modifyUserInfo()
 {
-	int id;
+	string id;
 	cout << "请输入您将修改信息的用户的ID";
 	cin >> id;
 
@@ -171,7 +171,7 @@ void printUserInfo(User user)
 
 void findUserById()
 {
-	int id;
+	string id;
 	cout << "请输入您要查询的用户的ID";
 	cin >> id;
 
@@ -412,7 +412,7 @@ void findAllBook()
 
 void borrowBook()
 {
-	int userId;
+	string userId;
 	cout << "请输入用户ID：";
 	cin >> userId;
 
@@ -432,7 +432,7 @@ void borrowBook()
 
 void returnBook()
 {
-	int userId;
+	string userId;
 	cout << "请输入用户ID：";
 	cin >> userId;
 
@@ -479,7 +479,7 @@ void printRecord(RecordVo record)
 
 void renewBook()
 {
-	int userId;
+	string userId;
 	cout << "请输入用户ID：";
 	cin >> userId;
 

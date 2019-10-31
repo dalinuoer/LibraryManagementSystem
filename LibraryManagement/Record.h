@@ -20,8 +20,8 @@ public:
 	~Record();
 	int getId();
 	void setId(const int id);
-	int getUserId();
-	void setUserId(const int userId);
+	string getUserId();
+	void setUserId(const string &userId);
 	int getBookId();
 	void setBookId(const int bookId);
 	int getABookId();
@@ -39,7 +39,7 @@ public:
 
 private:
 	int id;
-	int userId;
+	char userId[20];
 	int bookId;
 	int aBookId;
 	char date[40];

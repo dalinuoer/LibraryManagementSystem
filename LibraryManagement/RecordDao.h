@@ -17,9 +17,9 @@ public:
 	bool updateRecord(int id, const Record &record);
 	Record findRecordById(int id, bool &found);
 	vector<Record> findAllRecord();
-	vector<Record> findRecordByUserId(int userId);
+	vector<Record> findRecordByUserId(const string &userId);
 	vector<Record> findRecordByBookId(int bookId);
-	Record findRecordByUserIdAndBookId(int userId, int bookId, bool &found);
+	Record findRecordByUserIdAndBookId(const string &userId, int bookId, bool &found);
 
 private:
 	Dao<Record> dao;

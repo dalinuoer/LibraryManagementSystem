@@ -57,7 +57,7 @@ vector<Record> RecordDao::findRecordByBookId(int bookId)
 	return dataList;
 }
 
-vector<Record> RecordDao::findRecordByUserId(int userId)
+vector<Record> RecordDao::findRecordByUserId(const string &userId)
 {
 	vector<Record> dataList;
 	file.open(filename, ios::binary | ios::in);
@@ -78,7 +78,7 @@ vector<Record> RecordDao::findRecordByUserId(int userId)
 	return dataList;
 }
 
-Record RecordDao::findRecordByUserIdAndBookId(int userId, int bookId, bool &found)
+Record RecordDao::findRecordByUserIdAndBookId(const string &userId, int bookId, bool &found)
 {
 	Record data;
 	file.open(filename, ios::binary | ios::in);

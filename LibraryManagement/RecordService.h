@@ -13,14 +13,14 @@ class RecordService {
 public:		
 	RecordService();
 	~RecordService();
-	int borrowBook(int userId, int AbookId);
+	int borrowBook(const string &userId, int aBookId);
 	int renewBook(int recordId, int duration);
 	bool returnBook(int recordId);
-	bool returnBook(int userid, int bookid);
-	RecordVo findRecordByUserIdAndBookId(int userid,int bookid,bool &found);
+	bool returnBook(const string &userId, int bookid);
+	RecordVo findRecordByUserIdAndBookId(const string &userId, int bookid, bool &found);
 	vector<RecordVo>findAllRecord();
 	vector<RecordVo>findRecordByBookId(int bookId);
-	vector<RecordVo>findRecordByUserId(int userId);
+	vector<RecordVo>findRecordByUserId(const string &userId);
 	
 private:
 	BookDao bookDao;

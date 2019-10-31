@@ -12,7 +12,7 @@ RecordService::~RecordService()
 {
 }
 
-int RecordService::borrowBook(int userId, int AbookId)
+int RecordService::borrowBook(const string &userId, int AbookId)
 {
 	//检测用户是否存在
 	bool foundU;
@@ -107,10 +107,10 @@ bool  RecordService::returnBook(int recordId)
 	return true;
 }
 
-bool RecordService::returnBook(int userid, int bookid)
+bool RecordService::returnBook(const string &userId, int bookid)
 {
 	bool found;
-	Record record = recordDao.findRecordByUserIdAndBookId(userid, bookid, found);
+	Record record = recordDao.findRecordByUserIdAndBookId(userId, bookid, found);
 
 	ABook abook = aBookDao.findABookById(record.getABookId(), found);
 	abook.setStatus(ABook::NORMAL);
@@ -122,7 +122,7 @@ bool RecordService::returnBook(int userid, int bookid)
 	return true;
 }
 
-RecordVo RecordService::findRecordByUserIdAndBookId(int userid, int bookid, bool &found)
+RecordVo RecordService::findRecordByUserIdAndBookId(const string &userid, int bookid, bool &found)
 {
 	Record record = recordDao.findRecordByUserIdAndBookId(userid, bookid, found);
 	Book book = bookDao.findBookById(bookid,found);
@@ -210,7 +210,7 @@ vector<RecordVo> RecordService::findRecordByBookId(int bookId)
 	return voList;
 }
 
-vector<RecordVo> RecordService::findRecordByUserId(int userId)
+vector<RecordVo> RecordService::findRecordByUserId(const string &userId)
 {
 	vector<Record> list =  recordDao.findRecordByUserId(userId);
 	vector<RecordVo> voList;
