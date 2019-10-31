@@ -131,7 +131,7 @@ vector<User> UserDao::findAllUser()
 {
 	vector<User> dataList;
 	file.open(filename, ios::binary | ios::in);
-	file.seekg(sizeof(int), ios::beg);
+	file.seekg(ios::beg);
 	while (!file.eof())
 	{
 		User data;

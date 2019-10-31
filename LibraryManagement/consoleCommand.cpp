@@ -58,6 +58,9 @@ void addUser()
 	string name;
 	int type;
 
+	cout << "请输入要添加的用户的学号：";
+	cin >> id;
+	user.setId(id);
 	cout << "";
 	cout << "请输入要添加的用户的姓名：";
 	cin >> name;
@@ -107,6 +110,7 @@ void modifyUserInfo()
 	cin >> id;
 
 	User user;
+	user.setId(id);
 
 	string name;
 	int type;
