@@ -11,14 +11,14 @@ User::~User()
 {
 }
 
-int User::getId() const
+string User::getId() const
 {
-	return this->id;
+	return string(this->id);
 }
 
-void User::setId(const int id)
+void User::setId(const string &id)
 {
-	this->id = id;
+	strcpy(this->id, id.c_str());
 }
 
 string User::getName()

@@ -256,7 +256,11 @@ void addBook() //增加一类书
 	cin >> author;
 	book.setAuthor(author);
 
-	typeService.findAllType();
+	auto types = typeService.findAllType();
+	for (auto type : types)
+	{
+		cout << type.getId() << " " << type.getName() << "; ";
+	}
 	cout << "请输入书籍类型前面的数字代码：";
 	cin >> typeId;
 	book.setTypeId(typeId);
@@ -320,6 +324,7 @@ void modifyBookInfo()
 	int id;
 	cout << "请输入要修改的书籍编号：";
 	cin >> id;
+	book.setId(id);
 
 	cout << "请输入书籍的书名：";
 	cin >> name;
@@ -383,11 +388,11 @@ void printBookInfo(Book book)
 	cout << "价格：" << book.getPrice() << endl;
 	cout << "总数：" << book.getQuantity() << endl;
 	cout << "书籍状态：";
-	if (book.getStatus() == 0)
+	if (book.getStatus() == Book::NORMAL)
 	{
 		cout << "正常" << endl;
 	}
-	else
+	else if (book.getStatus() == Book::DELETED)
 	{
 		cout << "删除" << endl;
 	}

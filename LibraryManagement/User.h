@@ -21,8 +21,8 @@ public:
 public:
 	User();
 	~User();
-	int getId() const;
-	void setId(const int id);
+	string getId() const;
+	void setId(const string &id);
 	string getName();
 	void setName(const string &name);
 	UserType getType();
@@ -33,7 +33,7 @@ public:
 	bool isDelete();
 
 private:
-	int id;
+	char id[20];
 	char name[40];
 	UserType type;
 	UserStatus status;

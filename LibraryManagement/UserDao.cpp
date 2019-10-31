@@ -11,7 +11,7 @@ UserDao::~UserDao()
 {
 }
 
-int UserDao::getPosition(int id)
+int UserDao::getPosition(const string &id)
 {
 	User data;
 	file.open(filename, ios::binary | ios::in);
@@ -51,7 +51,7 @@ bool UserDao::insertUser(const User &user)
 	return true;
 }
 
-bool UserDao::updateUser(int id, const User &user)
+bool UserDao::updateUser(const string &id, const User &user)
 {
 	int pos = getPosition(id);
 	if (pos != -1)
@@ -73,7 +73,7 @@ bool UserDao::updateUser(int id, const User &user)
 	}
 }
 
-bool UserDao::deleteUser(int id)
+bool UserDao::deleteUser(const string &id)
 {
 	bool found;
 	User data = findUserById(id, found);
@@ -88,7 +88,7 @@ bool UserDao::deleteUser(int id)
 	}
 }
 
-User UserDao::findUserById(int id, bool &found)
+User UserDao::findUserById(const string &id, bool &found)
 {
 	User data;
 	int pos = getPosition(id);

@@ -13,14 +13,14 @@ public:
 	UserDao(const string &filename);
 	~UserDao();
 	bool insertUser(const User &user);
-	bool updateUser(int id, const User &user);
-	bool deleteUser(int id);
-	User findUserById(int id, bool &found);
+	bool updateUser(const string &id, const User &user);
+	bool deleteUser(const string &id);
+	User findUserById(const string &id, bool &found);
 	User findUserByName(const string &name, bool &found);
 	vector<User> findAllUser();
 
 private:
-	int getPosition(int id);
+	int getPosition(const string &id);
 	Dao<User> dao;
 	string filename;
 	fstream file;
