@@ -20,6 +20,7 @@ public:
 	vector<User> findAllUser();
 
 private:
+	int getPosition(int id);
 	Dao<User> dao;
 	string filename;
 	fstream file;

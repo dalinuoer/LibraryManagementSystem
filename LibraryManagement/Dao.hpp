@@ -75,7 +75,7 @@ public:
 
 	bool update(int id,const T &data)
 	{
-		int pos = findPosition(id);
+		int pos = getPosition(id);
 		if (pos != -1)
 		{
 			file.open(filename, ios::binary | ios::out | ios::in);
@@ -95,7 +95,7 @@ public:
 		}
 	}
 
-	int findPosition(int id)
+	int getPosition(int id)
 	{
 		T data;
 		file.open(filename, ios::binary | ios::in);
@@ -126,7 +126,7 @@ public:
 	T findById(int id, bool &found)
 	{
 		T data;
-		int pos = findPosition(id);
+		int pos = getPosition(id);
 		if (pos != -1)
 		{
 			found = true;

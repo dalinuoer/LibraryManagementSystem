@@ -131,7 +131,7 @@ RecordVo RecordService::findRecordByUserIdAndBookId(int userid, int bookid, bool
 	vo.setUserId(userid);
 	vo.setBookId(bookid);
 	//RecordVo record×Ö¶Î
-	vo.setRecordId(record.getId());			
+	vo.setId(record.getId());			
 	vo.setABookId(record.getBookId());
 	vo.setBookId(record.getABookId());
 	vo.setDate(record.getDate());
@@ -161,7 +161,7 @@ vector<RecordVo> RecordService::findAllRecord()
 		vo.setUserId(record.getUserId());
 		vo.setBookId(record.getBookId());
 		//RecordVo record×Ö¶Î
-		vo.setRecordId(record.getId());
+		vo.setId(record.getId());
 		vo.setABookId(record.getBookId());
 		vo.setBookId(record.getABookId());
 		vo.setDate(record.getDate());
@@ -192,7 +192,7 @@ vector<RecordVo> RecordService::findRecordByBookId(int bookId)
 		vo.setUserId(record.getUserId());
 		vo.setBookId(record.getBookId());
 		//RecordVo record×Ö¶Î
-		vo.setRecordId(record.getId());
+		vo.setId(record.getId());
 		vo.setABookId(record.getBookId());
 		vo.setBookId(record.getABookId());
 		vo.setDate(record.getDate());
@@ -223,7 +223,7 @@ vector<RecordVo> RecordService::findRecordByUserId(int userId)
 		vo.setUserId(record.getUserId());
 		vo.setBookId(record.getBookId());
 		//RecordVo record×Ö¶Î
-		vo.setRecordId(record.getId());
+		vo.setId(record.getId());
 		vo.setABookId(record.getBookId());
 		vo.setBookId(record.getABookId());
 		vo.setDate(record.getDate());

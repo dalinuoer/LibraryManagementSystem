@@ -443,7 +443,7 @@ void returnBook()
 
 void printRecord(RecordVo record)
 {
-	cout << "借阅记录编号：" << record.getRecordId() << endl;
+	cout << "借阅记录编号：" << record.getId() << endl;
 	cout << "借阅人：" << record.getUserName() << endl;
 	cout << "书名：" << record.getBookName() << endl;
 	cout << "借书时间：" << record.getDate() << endl;
@@ -480,30 +480,6 @@ void renewBook()
 
 	bool found;
 	RecordVo record = recordService.findRecordByUserIdAndBookId(userId, bookId, found);
-	printRecord(record);
-
-	if (recordService.renewBook(record.getRecordId(), record.getDuration()))
-	{
-		cout << "续借成功！" << endl;
-	}
-	else
-	{
-		cout << "续借失败！" << endl;
-	}
-}
-
-void renewBook()
-{
-	int userId;
-	cout << "请输入用户ID：";
-	cin >> userId;
-
-	int bookId;
-	cout << "请输入书籍ID：";
-	cin >> bookId;
-
-	bool found;
-	Record record = recordService.findRecordByUserIdAndBookId(userId, bookId, found);
 	printRecord(record);
 
 	if (recordService.renewBook(record.getId(), record.getDuration()))
