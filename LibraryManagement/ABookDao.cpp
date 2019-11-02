@@ -2,6 +2,7 @@
 
 ABookDao::ABookDao(const string &filename) : dao(filename)
 {
+	this->filename = filename;
 }
 
 
@@ -28,4 +29,30 @@ bool ABookDao::deleteABook(int id)
 ABook ABookDao::findABookById(int id, bool &found)
 {
 	return dao.findById(id, found);
+}
+
+vector<ABook> ABookDao::findABookByBookId(int bookId)
+{
+	vector<ABook> dataList;
+	file.open(filename, ios::binary | ios::in);
+	file.seekg(sizeof(int), ios::beg);
+	while (!file.eof())
+	{
+		ABook data;
+		file.read((char*)&data, sizeof(ABook));
+		if (file.gcount() != 0)
+		{
+			if (data.getBookId() == bookId)
+			{
+				dataList.push_back(data);
+			}
+		}
+	}
+	file.close();
+	return dataList;
+}
+
+vector<ABook> ABookDao::findAllABook()
+{
+	return dao.findAll();
 }

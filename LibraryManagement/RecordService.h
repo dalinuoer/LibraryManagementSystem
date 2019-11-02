@@ -13,8 +13,8 @@ class RecordService {
 public:		
 	RecordService();
 	~RecordService();
-	int borrowBook(const string &userId, int aBookId);
-	int renewBook(int recordId, int duration);
+	bool borrowBook(const string &userId, int aBookId);
+	bool renewBook(int recordId, int duration);
 	bool returnBook(int recordId);
 	bool returnBook(const string &userId, int bookid);
 	RecordVo findRecordByUserIdAndBookId(const string &userId, int bookid, bool &found);

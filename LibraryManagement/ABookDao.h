@@ -14,8 +14,12 @@ public:
 	bool updateABook(int id, const ABook &aBook);
 	bool deleteABook(int id);
 	ABook findABookById(int id, bool &found);
+	vector<ABook> findABookByBookId(int bookId);
+	vector<ABook> findAllABook();
 
 private:
 	Dao<ABook> dao;
+	string filename;
+	fstream file;
 };
 

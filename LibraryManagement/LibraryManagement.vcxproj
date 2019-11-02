@@ -149,6 +149,7 @@
   <ItemGroup>
     <ClInclude Include="ABook.h" />
     <ClInclude Include="ABookDao.h" />
+    <ClInclude Include="ABookVo.h" />
     <ClInclude Include="Book.h" />
     <ClInclude Include="BookDao.h" />
     <ClInclude Include="BookService.h" />
@@ -168,6 +169,7 @@
   <ItemGroup>
     <ClCompile Include="ABook.cpp" />
     <ClCompile Include="ABookDao.cpp" />
+    <ClCompile Include="ABookVo.cpp" />
     <ClCompile Include="Book.cpp" />
     <ClCompile Include="BookDao.cpp" />
     <ClCompile Include="BookService.cpp" />

@@ -130,8 +130,9 @@ void modifyUserInfo()
 	{
 		user.setType(User::TEACHER);
 	}
-
-	if (userService.changeUserInfo(id, user))
+	bool found;
+	user.setStatus(userService.findUserById(id, found).getStatus());
+	if (found && userService.changeUserInfo(id, user))
 	{
 		cout << "修改用户信息成功！" << endl;
 	}
@@ -420,7 +421,17 @@ void borrowBook()
 	cout << "请输入书籍ID：";
 	cin >> bookId;
 
-	if (recordService.borrowBook(userId, bookId))
+	vector<ABookVo> aBookVoList = bookService.findABookByBookId(bookId);
+	cout << "该类书所有单本如下：" << endl;
+	for (ABookVo vo : aBookVoList)
+	{
+		cout << vo.getId() << " " << vo.getBookName() << " " << vo.getAuthor() << " " << vo.getPublisher() << " " << vo.getStatus() << endl;
+	}
+
+	int aBookId;
+	cout << "请输入单本id：" << endl;
+	cin >> aBookId;
+	if (recordService.borrowBook(userId, aBookId))
 	{
 		cout << "借书成功！" << endl;
 	}

@@ -84,6 +84,9 @@
     <ClInclude Include="RecordVo.h">
       <Filter>头文件\po</Filter>
     </ClInclude>
+    <ClInclude Include="ABookVo.h">
+      <Filter>头文件\po</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ABook.cpp">
@@ -135,6 +138,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="RecordVo.cpp">
+      <Filter>源文件\po</Filter>
+    </ClCompile>
+    <ClCompile Include="ABookVo.cpp">
       <Filter>源文件\po</Filter>
     </ClCompile>
   </ItemGroup>
