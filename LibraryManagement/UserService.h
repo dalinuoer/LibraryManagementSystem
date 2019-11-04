@@ -11,8 +11,8 @@ class UserService
 public:
 	const static int USER_NOT_FOUND  = 1;
 	const static int USER_ALREADAY_EXIST = 2;
-	const static int USERDAO_ERROR = 3;
-	const static int USERDAO_SUCCESS = 4;
+	const static int ERROR = 3;
+	const static int SUCCESS = 4;
 
 	UserService();
 	int addUser(const User &user);

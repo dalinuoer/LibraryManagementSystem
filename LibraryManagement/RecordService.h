@@ -9,7 +9,8 @@
 #include "RecordDao.h"
 #include <vector>
 #include"RecordVo.h"
-class RecordService {
+class RecordService 
+{
 public:		
 	RecordService();
 	~RecordService();

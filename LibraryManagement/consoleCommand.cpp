@@ -72,18 +72,28 @@ void addUser()
 	{
 		user.setType(User::STUDENT);
 	}
-	else
+	else if(type == 1)
 	{
 		user.setType(User::TEACHER);
 	}
+	else
+	{
+		cout << "输入类型错误！" << endl;
+		return;
+	}
 	user.setStatus(User::NORMAL);
-	if (userService.addUser(user))
+	int status = userService.addUser(user);
+	if (status == UserService::SUCCESS)
 	{
 		cout << "添加用户成功！" << endl;
 	}
+	else if (status == UserService::USER_ALREADAY_EXIST)
+	{
+		cout << "用户已存在，添加失败！" << endl;
+	}
 	else
 	{
-		cout << "添加用户失败！" << endl;
+		cout << "未知错误" << endl;
 	}
 }
 
@@ -93,13 +103,18 @@ void deleteUser()
 	cout << "请输入要被删除的用户的ID：";
 	cin >> id;
 
-	if (userService.delUser(id))
+	int status = userService.delUser(id);
+	if (status == UserService::SUCCESS)
 	{
 		cout << "删除用户成功！" << endl;
 	}
+	else if(status == UserService::USER_NOT_FOUND)
+	{
+		cout << "用户不存在！删除失败！" << endl;
+	}
 	else
 	{
-		cout << "删除用户失败！" << endl;
+		cout << "错误" << endl;
 	}
 }
 
@@ -108,6 +123,14 @@ void modifyUserInfo()
 	string id;
 	cout << "请输入您将修改信息的用户的ID";
 	cin >> id;
+
+	bool found = false;
+	userService.findUserById(id, found);
+	if (!found)
+	{
+		cout << "输入的用户id不存在！" << endl;
+		return;
+	}
 
 	User user;
 	user.setId(id);
@@ -126,19 +149,28 @@ void modifyUserInfo()
 	{
 		user.setType(User::STUDENT);
 	}
-	else
+	else if (type == 1)
 	{
 		user.setType(User::TEACHER);
 	}
+	else
+	{
+		cout << "类型输入错误！" << endl;
+	}
 	bool found;
 	user.setStatus(userService.findUserById(id, found).getStatus());
-	if (found && userService.changeUserInfo(id, user))
+	int status = userService.changeUserInfo(id, user);
+	if (status == UserService::SUCCESS)
 	{
 		cout << "修改用户信息成功！" << endl;
 	}
+	else if(status == UserService::USER_NOT_FOUND)
+	{
+		cout << "输入的id不存在！修改用户信息失败！" << endl;
+	}
 	else
 	{
-		cout << "修改用户信息失败！" << endl;
+		cout << "错误！修改用户信息失败！" << endl;
 	}
 }
 
@@ -164,9 +196,13 @@ void printUserInfo(User user)
 	{
 		cout << "被删除" << endl;
 	}
-	else
+	else if (user.getStatus() == User::FULL)
 	{
 		cout << "书已借满" << endl;
+	}
+	else
+	{
+		cout << "未知" << endl;
 	}
 	cout << endl;
 }
@@ -186,7 +222,6 @@ void findUserById()
 		return;
 	}
 	printUserInfo(user);
-	cout << "查询用户信息成功！" << endl;
 }
 
 void findUserByName()
@@ -204,7 +239,6 @@ void findUserByName()
 		return;
 	}
 	printUserInfo(user);
-	cout << "查询用户信息成功！" << endl;
 }
 
 void findOneUser()
@@ -228,14 +262,17 @@ void findOneUser()
 void findAllUser()
 {
 	vector<User> users = userService.findAllUser();
+	if (users.size() == 0)
+	{
+		cout << "暂无任何用户!" << endl;
+		return;
+	}
 	vector<User>::iterator it = users.begin();
 	while (it != users.end())
 	{
 		printUserInfo(*it);
 		it++;
 	}
-
-	cout << "查询成功" << endl;
 }
 
 void addBook() //增加一类书
@@ -259,10 +296,16 @@ void addBook() //增加一类书
 	book.setAuthor(author);
 
 	auto types = typeService.findAllType();
+	if (types.size() == 0)
+	{
+		cout << "请先到主菜单中添加书籍类别！" << endl;
+	}
 	for (auto type : types)
 	{
 		cout << type.getId() << " " << type.getName() << "; ";
 	}
+	cout << endl;
+
 	cout << "请输入书籍类型前面的数字代码：";
 	cin >> typeId;
 	book.setTypeId(typeId);
@@ -289,7 +332,7 @@ void addBook() //增加一类书
 	{
 		cout << "增加书籍成功！" << endl;
 	}
-	else 
+	else
 	{
 		cout << "增加书籍失败！" << endl;
 	}
@@ -331,6 +374,13 @@ void modifyBookInfo()
 	cout << "请输入要修改的书籍编号：";
 	cin >> id;
 	book.setId(id);
+
+	bool found = false;
+	bookService.findBookById(id, found);
+	if (!found)
+	{
+		cout << "输入的id不存在！" << endl;
+	}
 
 	cout << "请输入书籍的书名：";
 	cin >> name;

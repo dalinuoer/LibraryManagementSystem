@@ -20,11 +20,11 @@ int UserService::addUser(const User &user)
 	{
 		if (userDao.insertUser(user) != -1)
 		{
-            return UserService::USERDAO_SUCCESS;
+            return UserService::SUCCESS;
 		}
 		else
 		{
-            return UserService::USERDAO_ERROR;
+            return UserService::ERROR;
 		}
 	}
 
@@ -38,11 +38,11 @@ int UserService::delUser(const string &id)
 	{
 		if (userDao.deleteUser(id))
 		{
-            return UserService::USERDAO_SUCCESS;
+            return UserService::SUCCESS;
 		}
 		else
 		{
-            return UserService::USERDAO_ERROR;
+            return UserService::ERROR;
 		}
 	}
 	else
@@ -64,11 +64,11 @@ int UserService::changeUserInfo(const string &id, const User &user)
 	{
 		if (userDao.updateUser(id,user))
 		{
-            return UserService::USERDAO_SUCCESS;
+            return UserService::SUCCESS;
 		}
 		else
 		{
-            return UserService::USERDAO_ERROR;
+            return UserService::ERROR;
 		}
 	}
 	else

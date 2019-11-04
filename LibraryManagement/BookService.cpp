@@ -42,8 +42,8 @@ int BookService::changeBookInfo(int id, const Book& book)
 int BookService::delBook(int id)
 {
 	bool found;
-	bookDao.findBookById(id, found);
-	if (found)
+	Book book = bookDao.findBookById(id, found);
+	if (found && !book.isDelete())
 	{
 		if (bookDao.deleteBook(id))
 		{
