@@ -12,7 +12,7 @@ TypeService::~TypeService()
 
 bool TypeService::insertType(const BookType& type)
 {
-	return typeDao.insertType(type);
+	return typeDao.insertType(type) != -1;
 }
 
 bool TypeService::updateType(int id, const BookType& type)

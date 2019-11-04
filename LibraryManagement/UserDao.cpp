@@ -39,7 +39,7 @@ int UserDao::getPosition(const string &id)
 	return pos;
 }
 
-bool UserDao::insertUser(const User &user)
+int UserDao::insertUser(const User &user)
 {
 	file.open(filename, ios::binary | ios::out | ios::app);
 	if (!file)

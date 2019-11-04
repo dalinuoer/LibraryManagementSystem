@@ -18,7 +18,7 @@ bool UserService::addUser(const User &user)
 	}
 	else
 	{
-		return userDao.insertUser(user);
+		return userDao.insertUser(user) != -1;
 	}
 
 }

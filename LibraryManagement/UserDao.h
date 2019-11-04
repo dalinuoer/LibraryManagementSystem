@@ -12,7 +12,7 @@ class UserDao
 public:
 	UserDao(const string &filename);
 	~UserDao();
-	bool insertUser(const User &user);
+	int insertUser(const User &user);
 	bool updateUser(const string &id, const User &user);
 	bool deleteUser(const string &id);
 	User findUserById(const string &id, bool &found);

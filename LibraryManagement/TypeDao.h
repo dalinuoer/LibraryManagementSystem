@@ -10,7 +10,7 @@ class TypeDao
 public:
 	TypeDao(const string &filename);
 	~TypeDao();
-	bool insertType(const BookType &type);
+	int insertType(const BookType &type);
 	bool updateType(int id, const BookType &type);
 	bool deleteType(int id);
 	BookType findTypeById(int id, bool &found);

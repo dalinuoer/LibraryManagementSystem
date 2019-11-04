@@ -63,11 +63,11 @@ bool RecordService::borrowBook(const string &userId, int aBookId)
 	record.setStatus(Record::NORMAL);
 	record.setId(0);
 	record.setDate(getDate());												//《========================设置各种时间=======================================
-	record.setDuration(1);
+	record.setDuration(15);
 	record.setReturnDate("未归还");
 	book.setQuantity(book.getQuantity() - 1);
 	abook.setStatus(ABook::BORROWED);
-	if (recordDao.insertRecord(record))
+	if (recordDao.insertRecord(record) != -1)
 	{
 		return true;												//借书成功		0
 	}
@@ -200,6 +200,7 @@ vector<RecordVo> RecordService::findAllRecord()
 		//RecordVo user字段
 		vo.setUserName(user.getName());
 		//RecordVo book字段
+		vo.setBookName(book.getName());
 		vo.setAuthor(book.getAuthor());
 		vo.setPublisher(book.getPublisher());
 

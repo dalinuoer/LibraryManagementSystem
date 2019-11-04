@@ -10,7 +10,7 @@ class ABookDao
 public:
 	ABookDao(const string &filename);
 	~ABookDao();
-	bool insertABook(const ABook &aBook);
+	int insertABook(const ABook &aBook);
 	bool updateABook(int id, const ABook &aBook);
 	bool deleteABook(int id);
 	ABook findABookById(int id, bool &found);

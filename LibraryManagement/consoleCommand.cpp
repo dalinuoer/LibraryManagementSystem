@@ -168,6 +168,7 @@ void printUserInfo(User user)
 	{
 		cout << "书已借满" << endl;
 	}
+	cout << endl;
 }
 
 void findUserById()
@@ -397,6 +398,7 @@ void printBookInfo(Book book)
 	{
 		cout << "删除" << endl;
 	}
+	cout << endl;
 }
 
 void findAllBook()
@@ -486,6 +488,7 @@ void printRecord(RecordVo record)
 	{
 		cout << "已还" << endl;
 	}
+	cout << endl;
 }
 
 void renewBook()
@@ -552,7 +555,6 @@ void findAllBookType()
 	{
 		printBookTypeInfo(bookTypes[i]);
 	}
-	cout << "查询所有图书类别成功" << endl;
 }
 
 void console()

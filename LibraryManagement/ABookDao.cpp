@@ -11,7 +11,7 @@ ABookDao::~ABookDao()
 }
 
 
-bool ABookDao::insertABook(const ABook &aBook)
+int ABookDao::insertABook(const ABook &aBook)
 {
 	return dao.insert(aBook);
 }

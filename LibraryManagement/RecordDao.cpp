@@ -11,7 +11,7 @@ RecordDao::~RecordDao()
 {
 }
 
-bool RecordDao::insertRecord(const Record &record)
+int RecordDao::insertRecord(const Record &record)
 {
 	return dao.insert(record);
 }

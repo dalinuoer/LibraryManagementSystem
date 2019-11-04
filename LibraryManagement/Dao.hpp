@@ -26,7 +26,7 @@ public:
 	{
 	}
 
-	bool insert(const T &data)
+	int insert(const T &data)
 	{
 		//获取当前最新id
 		file.open(filename, ios::binary | ios::in);
@@ -55,7 +55,7 @@ public:
 		file.write((char*)&id, sizeof(int));
 		file.write((char*)&data + sizeof(int), sizeof(T) - sizeof(int));
 		file.close();
-		return true;
+		return id;
 	}
 
 	bool del(int id)

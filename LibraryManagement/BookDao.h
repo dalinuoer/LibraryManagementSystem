@@ -14,7 +14,7 @@ class BookDao
 public:
 	BookDao(const string &filename);
 	~BookDao();
-	bool insertBook(const Book &book);
+	int insertBook(const Book &book);
 	bool updateBook(int id, const Book &book);
 	bool deleteBook(int id);
 	Book findBookById(int id, bool &found);

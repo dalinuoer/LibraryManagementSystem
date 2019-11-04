@@ -9,7 +9,7 @@ BookDao::~BookDao()
 {
 }
 
-bool BookDao::insertBook(const Book &book)
+int BookDao::insertBook(const Book &book)
 {
 	return dao.insert(book);
 }

@@ -9,7 +9,7 @@ TypeDao::~TypeDao()
 {
 }
 
-bool TypeDao::insertType(const BookType &type)
+int TypeDao::insertType(const BookType &type)
 {
 	return dao.insert(type);
 }

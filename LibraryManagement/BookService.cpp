@@ -7,16 +7,15 @@ BookService::BookService():bookDao("data/Book.dat"), aBookDao("data/ABook.dat")
 
 bool BookService::addBook(Book book)
 {
-	bool result = false;
-	result = bookDao.insertBook(book);
+	int id = bookDao.insertBook(book);
 	for (int i = 0; i < book.getQuantity(); i++)
 	{
 		ABook aBook;
-		aBook.setBookId(book.getId());
+		aBook.setBookId(id);
 		aBook.setStatus(ABook::NORMAL);
-		result &= aBookDao.insertABook(aBook);
+		aBookDao.insertABook(aBook);
 	}
-	return result;
+	return true;
 }
 
 bool BookService::changeBookInfo(int id, const Book& book)
