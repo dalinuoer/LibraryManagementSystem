@@ -157,14 +157,14 @@ void modifyUserInfo()
 	{
 		cout << "类型输入错误！" << endl;
 	}
-	bool found;
+	found;
 	user.setStatus(userService.findUserById(id, found).getStatus());
-	int status = userService.changeUserInfo(id, user);
-	if (status == UserService::SUCCESS)
+	int s = userService.changeUserInfo(id, user);
+	if (s == UserService::SUCCESS)
 	{
 		cout << "修改用户信息成功！" << endl;
 	}
-	else if(status == UserService::USER_NOT_FOUND)
+	else if(s == UserService::USER_NOT_FOUND)
 	{
 		cout << "输入的id不存在！修改用户信息失败！" << endl;
 	}
