@@ -6,7 +6,8 @@
 #include <string>
 #include "ABookVo.h"
 
-class BookService {
+class BookService 
+{
 
 public:
 	const static int SUCCESS = 0;

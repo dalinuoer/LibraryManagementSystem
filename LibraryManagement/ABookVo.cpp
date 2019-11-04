@@ -4,6 +4,7 @@ ABookVo::ABookVo(Book &book, ABook &aBook)
 {
 	this->setId(aBook.getId());
 	this->setBookId(aBook.getBookId());
+	this->setStatus(aBook.getStatus());
 	this->bookName = book.getName();
 	this->author = book.getAuthor();
 	this->publisher = book.getPublisher();
