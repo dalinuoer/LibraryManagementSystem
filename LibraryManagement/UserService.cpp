@@ -7,33 +7,47 @@ UserService::UserService() :userDao("data/User.dat")
 {
 }
 
-bool UserService::addUser(const User &user)
+int UserService::addUser(const User &user)
 {
 	bool found;
 	string id = user.getId();
 	userDao.findUserById(id,found);
-	if (found) 
+	if (found)
 	{
-		return false;
+		return UserService::USER_ALREADAY_EXIST;
 	}
 	else
 	{
-		return userDao.insertUser(user) != -1;
+		if (userDao.insertUser(user) != -1)
+		{
+            return UserService::USERDAO_SUCCESS;
+		}
+		else
+		{
+            return UserService::USERDAO_ERROR;
+		}
 	}
 
 }
 
-bool UserService::delUser(const string &id)
+int UserService::delUser(const string &id)
 {
 	bool found;
 	userDao.findUserById(id, found);
 	if (found)
 	{
-		return userDao.deleteUser(id);
+		if (userDao.deleteUser(id))
+		{
+            return UserService::USERDAO_SUCCESS;
+		}
+		else
+		{
+            return UserService::USERDAO_ERROR;
+		}
 	}
 	else
 	{
-		return false;
+		return UserService::USER_NOT_FOUND;
 	}
 }
 
@@ -48,11 +62,18 @@ int UserService::changeUserInfo(const string &id, const User &user)
 	userDao.findUserById(id, found);
 	if (found)
 	{
-		return userDao.updateUser(id,user);
+		if (userDao.updateUser(id,user))
+		{
+            return UserService::USERDAO_SUCCESS;
+		}
+		else
+		{
+            return UserService::USERDAO_ERROR;
+		}
 	}
 	else
 	{
-		return false;
+		return UserService::USER_NOT_FOUND;
 	}
 }
 
