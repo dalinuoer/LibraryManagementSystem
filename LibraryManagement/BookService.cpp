@@ -1,11 +1,11 @@
 #include "BookService.h"
 
 
-BookService::BookService():bookDao("data/Book.dat"), aBookDao("data/ABook.dat")
+BookService::BookService() :bookDao("data/Book.dat"), aBookDao("data/ABook.dat")
 {
 }
 
-bool BookService::addBook(Book book)
+int BookService::addBook(Book book)
 {
 	int id = bookDao.insertBook(book);
 	for (int i = 0; i < book.getQuantity(); i++)
@@ -15,34 +15,48 @@ bool BookService::addBook(Book book)
 		aBook.setStatus(ABook::NORMAL);
 		aBookDao.insertABook(aBook);
 	}
-	return true;
+	return SUCCESS;
 }
 
-bool BookService::changeBookInfo(int id, const Book& book)
+int BookService::changeBookInfo(int id, const Book& book)
 {
 	bool found;
 	bookDao.findBookById(id, found);
 	if (found)
 	{
-		return bookDao.updateBook(id, book);
+		if (bookDao.updateBook(id, book))
+		{
+			return SUCCESS;
+		}
+		else
+		{
+			return ERROR;
+		}
 	}
 	else
 	{
-		return false;
+		return BOOK_NOT_FOUND;
 	}
 }
 
-bool BookService::delBook(int id)
+int BookService::delBook(int id)
 {
 	bool found;
 	bookDao.findBookById(id, found);
-	if (found) 
+	if (found)
 	{
-		return bookDao.deleteBook(id);
+		if (bookDao.deleteBook(id))
+		{
+			return SUCCESS;
+		}
+		else
+		{
+			return ERROR;
+		}
 	}
 	else
 	{
-		return false;
+		return BOOK_NOT_FOUND;
 	}
 }
 

@@ -285,11 +285,11 @@ void addBook() //增加一类书
 
 	book.setStatus(Book::NORMAL);
 
-	if (bookService.addBook(book))
+	if (bookService.addBook(book) == BookService::SUCCESS)
 	{
 		cout << "增加书籍成功！" << endl;
 	}
-	else
+	else 
 	{
 		cout << "增加书籍失败！" << endl;
 	}
@@ -301,13 +301,17 @@ void delBook()
 	cout << "请输入要删除书籍的ID：";
 	cin >> id;
 
-	if (bookService.delBook(id))
+	if (bookService.delBook(id) == BookService::SUCCESS)
 	{
 		cout << "删除书籍成功！" << endl;
 	}
-	else
+	else if (bookService.delBook(id) == BookService::ERROR)
 	{
 		cout << "删除书籍失败！" << endl;
+	}
+	else if (bookService.delBook(id) == BookService::BOOK_NOT_FOUND)
+	{
+		cout << "没有找到书籍！" << endl;
 	}
 }
 
@@ -368,13 +372,17 @@ void modifyBookInfo()
 		book.setStatus(Book::DELETED);
 	}
 
-	if (bookService.changeBookInfo(id, book))
+	if (bookService.changeBookInfo(id, book) == BookService::SUCCESS)
 	{
 		cout << "修改书籍信息成功！" << endl;
 	}
-	else
+	else if (bookService.changeBookInfo(id,book) == BookService::ERROR) 
 	{
 		cout << "修改书籍信息失败！" << endl;
+	}
+	else if (bookService.changeBookInfo(id, book) == BookService::BOOK_NOT_FOUND)
+	{
+		cout << "没有找到书籍！" << endl;
 	}
 }
 
