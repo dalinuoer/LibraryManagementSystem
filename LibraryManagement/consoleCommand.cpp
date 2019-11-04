@@ -410,7 +410,7 @@ void modifyBookInfo()
 
 	cout << "请输入书籍类型前面的数字代码：";
 	cin >> typeId;
-	bool found = false;
+	found = false;
 	typeService.findTypeById(typeId, found);
 	if (!found)
 	{
