@@ -6,9 +6,14 @@
 
 using namespace std;
 
-class UserService 
+class UserService
 {
 public:
+	const static int USER_NOT_FOUND  = 1;
+	const static int USER_ALREADAY_EXIST = 2;
+	const static int USERDAO_ERROR = 3;
+	const static int USERDAO_SUCCESS = 4;
+
 	UserService();
 	bool addUser(const User &user);
 	bool delUser(const string &id);
