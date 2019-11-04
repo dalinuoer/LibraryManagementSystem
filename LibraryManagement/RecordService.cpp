@@ -38,9 +38,9 @@ int RecordService::borrowBook(const string &userId, int aBookId)
 	//检测书是否存在（书应该存在，因为上层传输来的是bookId 是经过其他途径查询获知）
 	bool foundB;
 	ABook abook = aBookDao.findABookById(aBookId, foundB);
-	if (!foundB)
+	if (!foundB || abook.getStatus() == ABook::BORROWED)
 	{
-		return ABOOK_NOT_FOUND;													//未找到这本书 ABOOK_NOT_FOUND
+		return ABOOK_NOT_FOUND;											//未找到这本书 ABOOK_NOT_FOUND
 	}
 
 
@@ -53,7 +53,7 @@ int RecordService::borrowBook(const string &userId, int aBookId)
 	record.setStatus(Record::NORMAL);
 	record.setId(0);
 	record.setDate(getDate());												//《========================设置各种时间=======================================
-	record.setDuration(15);
+	record.setDuration(1);
 	record.setReturnDate("未归还");
 	book.setQuantity(book.getQuantity() - 1);
 	abook.setStatus(ABook::BORROWED);

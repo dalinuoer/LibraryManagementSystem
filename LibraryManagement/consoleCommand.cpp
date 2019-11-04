@@ -308,6 +308,13 @@ void addBook() //增加一类书
 
 	cout << "请输入书籍类型前面的数字代码：";
 	cin >> typeId;
+	bool found = false;
+	typeService.findTypeById(typeId, found);
+	if (!found)
+	{
+		cout << "输入的书籍类型代码有误！" << endl;
+		return;
+	}
 	book.setTypeId(typeId);
 
 	cout << "请输入书籍的出版社：";
@@ -390,9 +397,26 @@ void modifyBookInfo()
 	cin >> author;
 	book.setAuthor(author);
 
-	typeService.findAllType();
+	auto types = typeService.findAllType();
+	if (types.size() == 0)
+	{
+		cout << "请先到主菜单中添加书籍类别！" << endl;
+	}
+	for (auto type : types)
+	{
+		cout << type.getId() << " " << type.getName() << "; ";
+	}
+	cout << endl;
+
 	cout << "请输入书籍类型前面的数字代码：";
 	cin >> typeId;
+	bool found = false;
+	typeService.findTypeById(typeId, found);
+	if (!found)
+	{
+		cout << "输入的书籍类型代码有误！" << endl;
+		return;
+	}
 	book.setTypeId(typeId);
 
 	cout << "请输入书籍的出版社：";
