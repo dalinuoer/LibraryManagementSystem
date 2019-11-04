@@ -350,7 +350,7 @@ void delBook()
 	}
 	else if (bookService.delBook(id) == BookService::ERROR)
 	{
-		cout << "É¾³ýÊé¼®Ê§°Ü£¡" << endl;
+		cout << "É¾³ýÊé¼®Ê§°Ü£¡±¾ÊéÒÑ±»É¾³ý£¡" << endl;
 	}
 	else if (bookService.delBook(id) == BookService::BOOK_NOT_FOUND)
 	{

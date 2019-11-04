@@ -21,8 +21,8 @@ int BookService::addBook(Book book)
 int BookService::changeBookInfo(int id, const Book& book)
 {
 	bool found;
-	bookDao.findBookById(id, found);
-	if (found)
+	Book b = bookDao.findBookById(id, found);
+	if (found && !b.getStatus())
 	{
 		if (bookDao.updateBook(id, book))
 		{
@@ -45,11 +45,13 @@ int BookService::delBook(int id)
 	Book book = bookDao.findBookById(id, found);
 	if (found && !book.isDelete())
 	{
-		if (bookDao.deleteBook(id))
+		
+		if (book.getStatus() == Book::NORMAL)
 		{
+			bookDao.deleteBook(id);
 			return SUCCESS;
 		}
-		else
+		else if (book.getStatus() == Book::DELETED)
 		{
 			return ERROR;
 		}
