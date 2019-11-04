@@ -30,7 +30,7 @@ int RecordService::borrowBook(const string &userId, int aBookId)
 	//检测用户是否存在
 	bool foundU;
 	User user = userDao.findUserById(userId, foundU);
-	if (!foundU)
+	if (!foundU || user.getStatus() != User::NORMAL)
 	{
 		return USER_NOT_FOUND;													//未找到此用户 USER_NOT_FOUND
 	}

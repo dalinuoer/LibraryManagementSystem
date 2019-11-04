@@ -514,6 +514,11 @@ void borrowBook()
 	}
 
 	vector<ABookVo> aBookVoList = bookService.findABookByBookId(bookId);
+	if (aBookVoList.size() == 0)
+	{
+		cout << "该书籍不存在！" << endl;
+		return;
+	}
 	cout << "该类书所有单本如下：" << endl;
 	for (ABookVo vo : aBookVoList)
 	{
@@ -536,7 +541,7 @@ void borrowBook()
 	int aBookId;
 	cout << "请输入单本id：" << endl;
 	cin >> aBookId;
-	if (recordService.borrowBook(userId, aBookId))
+	if (recordService.borrowBook(userId, aBookId) == RecordService::SUCCESS)
 	{
 		cout << "借书成功！" << endl;
 	}
@@ -556,7 +561,7 @@ void returnBook()
 	cout << "请输入待还书籍ID：";
 	cin >> bookId;
 
-	if (recordService.returnBook(userId, bookId))
+	if (recordService.returnBook(userId, bookId) == RecordService::SUCCESS)
 	{
 		cout << "还书成功！" << endl;
 	}
@@ -608,7 +613,7 @@ void renewBook()
 	RecordVo record = recordService.findRecordByUserIdAndBookId(userId, bookId, found);
 	printRecord(record);
 
-	if (recordService.renewBook(record.getId(), record.getDuration()))
+	if (recordService.renewBook(record.getId(), record.getDuration()) == RecordService::SUCCESS)
 	{
 		cout << "续借成功！" << endl;
 	}
