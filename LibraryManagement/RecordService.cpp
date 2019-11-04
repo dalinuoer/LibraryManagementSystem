@@ -42,21 +42,21 @@ int RecordService::borrowBook(const string &userId, int aBookId)
 	{
 		return ABOOK_NOT_FOUND;											//未找到这本书 ABOOK_NOT_FOUND
 	}
-
+	abook.setStatus(ABook::BORROWED);
+	aBookDao.updateABook(abook.getId(), abook);
 
 	Book book = bookDao.findBookById(abook.getBookId(), foundB);
 
 	//有剩余继续进行借阅操作
 	Record record;
 	record.setBookId(aBookId);
+	record.setABookId(aBookId);
 	record.setUserId(userId);
 	record.setStatus(Record::NORMAL);
 	record.setId(0);
 	record.setDate(getDate());												//《========================设置各种时间=======================================
 	record.setDuration(1);
 	record.setReturnDate("未归还");
-	book.setQuantity(book.getQuantity() - 1);
-	abook.setStatus(ABook::BORROWED);
 	if (recordDao.insertRecord(record) != -1)
 	{
 		return SUCCESS;												//借书成功		0

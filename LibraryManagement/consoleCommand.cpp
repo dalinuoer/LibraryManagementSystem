@@ -506,8 +506,8 @@ void borrowBook()
 	cin >> bookId;
 
 	bool found = false;
-	bookService.findBookById(bookId, found);
-	if (!found)
+	Book book = bookService.findBookById(bookId, found);
+	if (!found || book.getStatus() != Book::NORMAL)
 	{
 		cout << "输入的书籍id不存在！" << endl;
 		return;
