@@ -15,8 +15,8 @@ public:
 	const static int USERDAO_SUCCESS = 4;
 
 	UserService();
-	bool addUser(const User &user);
-	bool delUser(const string &id);
+	int addUser(const User &user);
+	int delUser(const string &id);
 	int changeUserInfo(const string &id, const User &user);
 	User findUserById(const string &id, bool &found);
 	User findUserByName(string username, bool &found);
