@@ -505,11 +505,32 @@ void borrowBook()
 	cout << "请输入书籍ID：";
 	cin >> bookId;
 
+	bool found = false;
+	bookService.findBookById(bookId, found);
+	if (!found)
+	{
+		cout << "输入的书籍id不存在！" << endl;
+		return;
+	}
+
 	vector<ABookVo> aBookVoList = bookService.findABookByBookId(bookId);
 	cout << "该类书所有单本如下：" << endl;
 	for (ABookVo vo : aBookVoList)
 	{
-		cout << vo.getId() << " " << vo.getBookName() << " " << vo.getAuthor() << " " << vo.getPublisher() << " " << vo.getStatus() << endl;
+		cout << vo.getId() << " " << vo.getBookName() << " " << vo.getAuthor() << " " << vo.getPublisher() << " ";
+		if (vo.getStatus() == ABook::NORMAL)
+		{
+			cout << "正常" << endl;
+		}
+		else if (vo.getStatus() == ABook::BORROWED)
+		{
+			cout << "被借阅" << endl;
+		}
+		else
+		{
+			cout << "非正常状态" << endl;
+		}
+		
 	}
 
 	int aBookId;
