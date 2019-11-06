@@ -27,9 +27,11 @@ public:
 	int returnBook(int recordId);
 	int returnBook(const string &userId, int bookid);
 	RecordVo findRecordByUserIdAndBookId(const string &userId, int bookid, bool &found);
-	vector<RecordVo>findAllRecord();
-	vector<RecordVo>findRecordByBookId(int bookId);
-	vector<RecordVo>findRecordByUserId(const string &userId);
+	vector<RecordVo> findAllRecord();
+	vector<RecordVo> findRecordByBookId(int bookId);
+	vector<RecordVo> findRecordByUserId(const string &userId);
+	vector<Book> bookRank();
+	vector<User> userRank();
 	
 private:
 	BookDao bookDao;

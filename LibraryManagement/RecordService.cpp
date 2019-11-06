@@ -1,6 +1,78 @@
 #include "RecordService.h"
 #include <ctime>
 #include <sstream>
+#include <map>
+#include <set>
+#include <algorithm>
+
+
+bool compareBookR(pair<int, set<string>> a, pair<int, set<string>> b) {
+	return a.second.size() < b.second.size();
+}
+
+bool compareUserR(pair<string, set<int>> a, pair<string, set<int>> b) {
+	return a.second.size() < b.second.size();
+}
+
+vector<Book> RecordService::bookRank()
+{
+	vector<RecordVo> recordVos = findAllRecord();
+	map<int, set<string>> bookR;
+	for (auto record : recordVos)
+	{
+		int bookId = record.getBookId();
+		if (bookR.find(bookId) == bookR.end())
+		{
+			bookR.insert(pair<int, set<string>>(bookId, set<string>()));
+		}
+		else
+		{
+			bookR[bookId].insert(record.getUserId());
+		}
+	}
+	vector<pair<int, set<string>>> vec(bookR.begin(), bookR.end());
+	sort(vec.begin(), vec.end(), compareBookR);
+
+	vector<Book> books;
+	for (int i = 0; i < 10; ++i)
+	{
+		bool found = false;
+		int id = vec[i].first;
+		Book book = bookDao.findBookById(id, found);
+		books.push_back(book);
+	}
+	return books;
+}
+
+vector<User> RecordService::userRank()
+{
+	vector<RecordVo> recordVos = findAllRecord();
+	map<string, set<int>> userR;
+	for (auto record : recordVos)
+	{
+		string userId = record.getUserId();
+		if (userR.find(userId) == userR.end())
+		{
+			userR.insert(pair<string, set<int>>(userId, set<int>()));
+		}
+		else
+		{
+			userR[userId].insert(record.getBookId());
+		}
+	}
+	vector<pair<string, set<int>>> vec(userR.begin(), userR.end());
+	sort(vec.begin(), vec.end(), compareUserR);
+
+	vector<User> users;
+	for (int i = 0; i < 10; ++i)
+	{
+		bool found = false;
+		string id = vec[i].first;
+		User user = userDao.findUserById(id, found);
+		users.push_back(user);
+	}
+	return users;
+}
 
 string getDate()
 {
