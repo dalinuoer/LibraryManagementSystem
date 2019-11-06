@@ -6,13 +6,13 @@
 #include <string>
 #include "ABookVo.h"
 
-class BookService 
-{
+class BookService {
 
 public:
 	const static int SUCCESS = 0;
 	const static int BOOK_NOT_FOUND = 1;
 	const static int ERROR = 2;
+	const static int ISBN_EXSIT = 3;
 
 public:
 	BookService();

@@ -31,7 +31,7 @@ public:
 	UserStatus getStatus();
 	void setStatus(const UserStatus status);
 	void setDelete();
-	bool isDelete();
+	bool isDelete() const;
 
 private:
 	char id[20];

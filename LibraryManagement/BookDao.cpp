@@ -50,6 +50,25 @@ vector<Book> BookDao::findBookByName(const string &name)
 	return bookList;
 }
 
+Book BookDao::findBookByISBN(const string &ISBN,bool &found)
+{
+	Book data;
+	file.open(filename, ios::binary | ios::in);
+	file.seekg(sizeof(int), ios::beg);
+	found = false;
+	while (!file.eof())
+	{
+		file.read((char*)&data, sizeof(Book));
+		if (data.getISBN() == ISBN )
+		{
+			found = true;
+			break;
+		}
+	}
+	file.close();
+	return data;
+}
+
 vector<Book> BookDao::findAllBook()
 {
 	return dao.findAll();

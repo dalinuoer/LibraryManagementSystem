@@ -56,7 +56,7 @@ void User::setDelete()
 	this->status = DELETED;
 }
 
-bool User::isDelete()
+bool User::isDelete() const
 {
 	return this->status == UserStatus::DELETED;
 }

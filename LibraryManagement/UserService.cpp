@@ -11,10 +11,23 @@ int UserService::addUser(const User &user)
 {
 	bool found;
 	string id = user.getId();
-	userDao.findUserById(id,found);
-	if (found)
+	User u = userDao.findUserById(id, found);
+	if (found && !u.isDelete())
 	{
 		return UserService::USER_ALREADAY_EXIST;
+	}
+	else if (found && u.isDelete())
+	{
+		u = user;
+		u.setStatus(User::NORMAL);
+		if (userDao.updateUser(id, u))
+		{
+			return UserService::SUCCESS;
+		}
+		else
+		{
+			return UserService::ERROR;
+		}
 	}
 	else
 	{
@@ -59,8 +72,8 @@ vector<User> UserService::findAllUser()
 int UserService::changeUserInfo(const string &id, const User &user)
 {
 	bool found;
-	userDao.findUserById(id, found);
-	if (found)
+	User u = userDao.findUserById(id, found);
+	if (found && !u.isDelete())
 	{
 		if (userDao.updateUser(id,user))
 		{

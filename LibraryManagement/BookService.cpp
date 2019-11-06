@@ -7,6 +7,25 @@ BookService::BookService() :bookDao("data/Book.dat"), aBookDao("data/ABook.dat")
 
 int BookService::addBook(Book book)
 {
+	bool found;
+	Book b = bookDao.findBookByISBN(book.getISBN(), found);
+	if (found && !b.isDelete())
+	{
+		return ISBN_EXSIT;
+	}
+	else if (found && b.isDelete())
+	{
+		b.setStatus(Book::NORMAL);
+		if (bookDao.updateBook(b.getId(), b))
+		{
+			return SUCCESS;
+		}
+		else
+		{
+			return ERROR;
+		}
+	}
+
 	int id = bookDao.insertBook(book);
 	for (int i = 0; i < book.getQuantity(); i++)
 	{

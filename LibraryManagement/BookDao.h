@@ -19,6 +19,7 @@ public:
 	bool deleteBook(int id);
 	Book findBookById(int id, bool &found);
 	vector<Book> findBookByName(const string &name);
+	Book findBookByISBN(const string &ISBN,bool &found);
 	vector<Book> findAllBook();
 
 private:
