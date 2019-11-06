@@ -1,4 +1,4 @@
-#include "ConsoleCommand.h"
+#include "consoleCommand.h"
 #include <iostream>
 
 using namespace std;
