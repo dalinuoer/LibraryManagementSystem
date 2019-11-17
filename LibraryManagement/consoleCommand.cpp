@@ -16,6 +16,7 @@ void printMenu()
 	cout << "***********2-书籍操作***********" << endl;
 	cout << "**********3-借还书操作**********" << endl;
 	cout << "*********4-书籍类别操作*********" << endl;
+	cout << "***********5-排行榜*************" << endl;
 	cout << "***********0-退出系统***********" << endl;
 }
 
@@ -47,6 +48,11 @@ void printFunction(int num)
 	{
 		cout << "1-增加书籍类型" << endl;
 		cout << "2-查询全部书籍类型" << endl;
+	}
+	else if (num == 5) // Ranking List
+	{
+		cout << "1-用户排行榜" << endl;
+		cout << "2-书籍排行榜" << endl;
 	}
 }
 
@@ -669,6 +675,9 @@ void console()
 {
 	printMenu();
 
+	vector<Book> books = recordService.bookRank();
+	vector<User> users = recordService.userRank();
+
 	while (true)
 	{
 		cout << "请输入您要执行的操作编号：" << endl;
@@ -772,6 +781,31 @@ void console()
 				break;
 			case 2:
 				findAllBookType();
+				break;
+			default:
+				cout << "您输入的数字有误，请检查后重新输入！" << endl;
+			}
+
+			break;
+		case 5:
+			printFunction(5);
+
+			cout << "请输入您要执行的子操作编号：" << endl;
+			cin >> choice2;
+
+			switch (choice2)
+			{
+			case 1:
+				for (int i = 0; i < users.size(); ++i)
+				{
+					cout << "No." << i << ":" << users[i].getName() << endl;
+				}
+				break;
+			case 2:
+				for (int i = 0; i < books.size(); ++i)
+				{
+					cout << "No." << i << ":" << books[i].getName() << endl;
+				}
 				break;
 			default:
 				cout << "您输入的数字有误，请检查后重新输入！" << endl;

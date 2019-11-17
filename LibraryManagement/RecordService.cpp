@@ -7,11 +7,11 @@
 
 
 bool compareBookR(pair<int, set<string>> a, pair<int, set<string>> b) {
-	return a.second.size() < b.second.size();
+	return a.second.size() > b.second.size();
 }
 
 bool compareUserR(pair<string, set<int>> a, pair<string, set<int>> b) {
-	return a.second.size() < b.second.size();
+	return a.second.size() > b.second.size();
 }
 
 vector<Book> RecordService::bookRank()
@@ -34,7 +34,7 @@ vector<Book> RecordService::bookRank()
 	sort(vec.begin(), vec.end(), compareBookR);
 
 	vector<Book> books;
-	for (int i = 0; i < 10; ++i)
+	for (int i = 0; i < 10 && i < vec.size(); ++i)
 	{
 		bool found = false;
 		int id = vec[i].first;
@@ -64,7 +64,7 @@ vector<User> RecordService::userRank()
 	sort(vec.begin(), vec.end(), compareUserR);
 
 	vector<User> users;
-	for (int i = 0; i < 10; ++i)
+	for (int i = 0; i < 10 && i < vec.size(); ++i)
 	{
 		bool found = false;
 		string id = vec[i].first;
